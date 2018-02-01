@@ -1,19 +1,17 @@
 package com.zed.projectz;
 
+import java.util.ArrayList;
 import java.util.List;
-
-/**
- * Created by Mange on 2018-01-31.
- */
 
 public class Player {
     Player (String name){
         Name = name;
+        RaceOptions = new ArrayList<>();
     }
 
     public String Name;
 
-//    public Enum<Race> Race;
-//
-//    public List<Enum<Race>> RaceOptions;
+    public List<Race> Race;
+
+    public List<Race> RaceOptions;
 }

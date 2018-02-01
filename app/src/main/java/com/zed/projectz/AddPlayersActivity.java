@@ -31,7 +31,9 @@ public class AddPlayersActivity extends AppCompatActivity {
             ((EditText)this.findViewById(R.id.playerThreeTextBox)).setText(sessionData.Players.get(2).Name);
         }
         if (numberOfPlayers >= 4){
-            ((EditText)this.findViewById(R.id.playerFourTextBox)).setText(sessionData.Players.get(3).Name);
+            EditText playerFourTextBox = this.findViewById(R.id.playerFourTextBox);
+            playerFourTextBox.setVisibility(View.VISIBLE);
+            playerFourTextBox.setText(sessionData.Players.get(3).Name);
         }
         if (numberOfPlayers >= 5){
             EditText playerFiveTextBox = this.findViewById(R.id.playerFiveTextBox);
@@ -47,9 +49,12 @@ public class AddPlayersActivity extends AppCompatActivity {
 
     public void addPlayer(View view){
         View rootView = view.getRootView();
+        EditText playerFourTextBox = rootView.findViewById(R.id.playerFourTextBox);
         EditText playerFiveTextBox = rootView.findViewById(R.id.playerFiveTextBox);
         EditText playerSixTextBox = rootView.findViewById(R.id.playerSixTextBox);
-        if (!playerFiveTextBox.isShown()){
+        if (!playerFourTextBox.isShown()){
+            playerFourTextBox.setVisibility(View.VISIBLE);
+        } else if (!playerFiveTextBox.isShown()){
             playerFiveTextBox.setVisibility(View.VISIBLE);
         } else if (!playerSixTextBox.isShown()){
             playerSixTextBox.setVisibility(View.VISIBLE);

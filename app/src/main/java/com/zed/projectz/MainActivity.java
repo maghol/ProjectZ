@@ -7,10 +7,26 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
+    private SessionData sessionData = DataHolder.getInstance().getData();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        initialize();
+    }
+
+    private void initialize() {
+        if (sessionData.Players == null || sessionData.Players.size() == 0) {
+            this.findViewById(R.id.randomizeRacesButton).setClickable(false);
+        } else {
+            this.findViewById(R.id.randomizeRacesButton).setClickable(true);
+        }
     }
 
     public void addPlayers(View view) {
@@ -22,6 +38,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void generateMap(View view) {
-
+        startActivity(new Intent(this, GenerateMapActivity.class));
     }
 }
