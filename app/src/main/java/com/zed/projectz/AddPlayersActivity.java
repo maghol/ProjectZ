@@ -7,6 +7,7 @@ import android.widget.EditText;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class AddPlayersActivity extends AppCompatActivity {
 
@@ -68,27 +69,27 @@ public class AddPlayersActivity extends AppCompatActivity {
         View rootView = view.getRootView();
         String playerOne = ((EditText) rootView.findViewById(R.id.playerOneTextBox)).getText().toString();
         if (!playerOne.isEmpty()){
-            players.add(new Player(playerOne));
+            players.add(new Player(UUID.randomUUID(), playerOne));
         }
         String playerTwo = ((EditText) rootView.findViewById(R.id.playerTwoTextBox)).getText().toString();
         if (!playerTwo.isEmpty()){
-            players.add(new Player(playerTwo));
+            players.add(new Player(UUID.randomUUID(), playerTwo));
         }
         String playerThree = ((EditText) rootView.findViewById(R.id.playerThreeTextBox)).getText().toString();
         if (!playerThree.isEmpty()){
-            players.add(new Player(playerThree));
+            players.add(new Player(UUID.randomUUID(), playerThree));
         }
         String playerFour = ((EditText) rootView.findViewById(R.id.playerFourTextBox)).getText().toString();
         if (!playerFour.isEmpty()){
-            players.add(new Player(playerFour));
+            players.add(new Player(UUID.randomUUID(), playerFour));
         }
         String playerFive = ((EditText) rootView.findViewById(R.id.playerFiveTextBox)).getText().toString();
         if (!playerFive.isEmpty()){
-            players.add(new Player(playerFive));
+            players.add(new Player(UUID.randomUUID(), playerFive));
         }
         String playerSix = ((EditText) rootView.findViewById(R.id.playerSixTextBox)).getText().toString();
         if (!playerSix.isEmpty()){
-            players.add(new Player(playerSix));
+            players.add(new Player(UUID.randomUUID(), playerSix));
         }
         sessionData.Players = players;
         DataHolder.getInstance().setData(sessionData);

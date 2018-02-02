@@ -46,4 +46,13 @@ public class RaceHelper {
         }
         return players;
     }
+
+    public Race getRaceById(int id) {
+        for (Race race : Races) {
+            if (race.Id == id) {
+                return race;
+            }
+        }
+        return null;
+    }
 }

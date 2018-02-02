@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initialize() {
-        if (sessionData.Players == null || sessionData.Players.size() == 0) {
+        if (sessionData.Players == null || sessionData.Players.size() < 3) {
             this.findViewById(R.id.randomizeRacesButton).setClickable(false);
         } else {
             this.findViewById(R.id.randomizeRacesButton).setClickable(true);
