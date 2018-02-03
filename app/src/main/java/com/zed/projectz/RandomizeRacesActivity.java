@@ -42,14 +42,12 @@ public class RandomizeRacesActivity extends AppCompatActivity {
     }
 
     public void selectRaces(View view) {
-        View rootView = view.getRootView();
-        // TODO: Verkar inte sparas, why not?
+        ArrayList<ViewGroup> viewsToSearch = new ArrayList<>();
+        viewsToSearch.add((ViewGroup) view.getRootView());
+        ArrayList<CheckBox> checkBoxes = getAllCheckboxes(new ArrayList<CheckBox>(), viewsToSearch);
         for (Player player : sessionData.Players) {
-            ArrayList<View> checkBoxViews = new ArrayList<>();
-            rootView.findViewsWithText(checkBoxViews, view.getContentDescription(), FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
-            for (View checkBoxView : checkBoxViews) {
-                CheckBox checkBox = (CheckBox) checkBoxView;
-                if (checkBox.isChecked()) {
+            for (CheckBox checkBox : checkBoxes) {
+                if (checkBox.isChecked() && checkBox.getContentDescription().equals(player.Id.toString())) {
                     player.Race = raceHelper.getRaceById(Integer.parseInt(checkBox.getTag().toString()));
                     break;
                 }
@@ -103,5 +101,30 @@ public class RandomizeRacesActivity extends AppCompatActivity {
             CheckBox checkBox = (CheckBox) checkBoxView;
             checkBox.setChecked(false);
         }
+    }
+
+    private ArrayList<CheckBox> getAllCheckboxes(ArrayList<CheckBox> checkBoxes, ArrayList<ViewGroup> viewsToSearch){
+        if (viewsToSearch.size() != 0) {
+            ViewGroup view = viewsToSearch.get(0);
+            viewsToSearch.remove(0);
+            int count = view.getChildCount();
+            for (int i = 0; i < count; i++) {
+                View tmpView = view.getChildAt(i);
+                if (tmpView instanceof CheckBox) {
+                    checkBoxes.add((CheckBox) tmpView);
+                } else {
+                    try {
+                        ViewGroup tmpViewGroup = (ViewGroup) tmpView;
+                        if (tmpViewGroup.getChildCount() > 0) {
+                            viewsToSearch.add(tmpViewGroup);
+                        }
+                    } catch (Exception e){
+                        // Nothing to see here =)
+                    }
+                }
+            }
+            getAllCheckboxes(checkBoxes, viewsToSearch);
+        }
+        return checkBoxes;
     }
 }
