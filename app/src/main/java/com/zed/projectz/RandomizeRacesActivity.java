@@ -38,7 +38,6 @@ public class RandomizeRacesActivity extends AppCompatActivity {
             numberOfRacesPerPlayer = Integer.parseInt(numberOfRacesPerPlayerString);
         }
         createPlayersView(raceHelper.RandomizeRaces(sessionData.Players, numberOfRacesPerPlayer));
-        // TODO: Save race options to players.
     }
 
     public void selectRaces(View view) {
@@ -61,12 +60,10 @@ public class RandomizeRacesActivity extends AppCompatActivity {
         playersContainer.removeAllViews();
         LayoutInflater inflater = LayoutInflater.from(this);
         for (Player currentPlayer : players) {
-            // Player layout
             View inflatedPlayerLayout = inflater.inflate(R.layout.randomize_race_player_view, null, false);
             TextView playerNameTextView = inflatedPlayerLayout.findViewById(R.id.playerName);
             playerNameTextView.setText(currentPlayer.Name);
             playersContainer.addView(inflatedPlayerLayout);
-            // Race layout
             if (currentPlayer.RaceOptions != null && currentPlayer.RaceOptions.size() > 0) {
                 for (Race race : currentPlayer.RaceOptions) {
                     View inflatedRaceLayout = inflater.inflate(R.layout.randomize_race_race_view, null, false);

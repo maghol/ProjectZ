@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules>
+    <rule>
+        <id>0</id>
+        <title>Jol-Nar</title>
+        <text>They like to build a wall of PDS's, it makes them feel safe.</text>
+    </rule>
+    <rule>
+        <id>1</id>
+        <title>PDS</title>
+        <text>PDS stands for "Please don't shoot!"</text>
+    </rule>
+    <rule>
+        <id>2</id>
+        <title>Winning the game</title>
+        <text>You can't win the game, fool!</text>
+    </rule>
+    <rule>
+        <id>3</id>
+        <title>Strategy action</title>
+        <text>Use your strategy card!</text>
+    </rule>
+</rules>

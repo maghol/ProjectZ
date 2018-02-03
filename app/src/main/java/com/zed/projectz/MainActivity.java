@@ -40,4 +40,8 @@ public class MainActivity extends AppCompatActivity {
     public void generateMap(View view) {
         startActivity(new Intent(this, GenerateMapActivity.class));
     }
+
+    public void rules(View view) {
+        startActivity(new Intent(this, RulesActivity.class));
+    }
 }
