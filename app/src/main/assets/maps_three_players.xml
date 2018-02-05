@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<maps>
+	<map>
+		<id>3_1</id>
+		<tiles>
+			<tile>
+				<position>10</position>
+				<type>MecatolRex</type>
+			</tile>
+			<tile>
+				<position>1</position>
+				<type>StartingPosition</type>
+			</tile>
+			<tile>
+				<position>25</position>
+				<type>StartingPosition</type>
+			</tile>
+			<tile>
+				<position>28</position>
+				<type>StartingPosition</type>
+			</tile>
+			<tile>
+				<position>6</position>
+				<type>Obstacle</type>
+			</tile>
+			<tile>
+				<position>14</position>
+				<type>Obstacle</type>
+			</tile>
+			<tile>
+				<position>16</position>
+				<type>Obstacle</type>
+			</tile>
+            <tile>
+                <position>5</position>
+                <type>Red</type>
+            </tile>
+            <tile>
+                <position>17</position>
+                <type>Red</type>
+            </tile>
+            <tile>
+                <position>20</position>
+                <type>Red</type>
+            </tile>
+            <tile>
+                <position>27</position>
+                <type>Red</type>
+            </tile>
+		</tiles>
+	</map>
+</maps>

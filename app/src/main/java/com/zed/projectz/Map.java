@@ -1,9 +1,9 @@
 package com.zed.projectz;
 
-/**
- * Created by Mange on 2018-01-31.
- */
+import java.util.List;
 
 public class Map {
-
+    public String Id;
+    public int NumberOfPlayers;
+    public List<MapTile> MapTiles;
 }

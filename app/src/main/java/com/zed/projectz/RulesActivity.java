@@ -8,10 +8,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.TreeMap;
 
 public class RulesActivity extends AppCompatActivity {
     private XmlHelper xmlHelper = new XmlHelper();
@@ -88,6 +91,30 @@ public class RulesActivity extends AppCompatActivity {
 
     private List<Rule> listRules() {
         Document document = xmlHelper.parseXML("rules.xml", getAssets());
-        return xmlHelper.createRulesFromDocument(document);
+        List<Rule> rules = new ArrayList<>();
+        NodeList ruleElements = document.getElementsByTagName("rule");
+        for (int i = 0; i < ruleElements.getLength(); i++) {
+            Rule rule = new Rule();
+            NodeList ruleChildren = ruleElements.item(i).getChildNodes();
+            for (int i2 = 0; i2 < ruleChildren.getLength(); i2++) {
+                Node currentProperty = ruleChildren.item(i2);
+                switch (currentProperty.getNodeName()){
+                    case "id":
+                    {
+                        rule.Id = Integer.parseInt(currentProperty.getTextContent());
+                    }
+                    case "title":
+                    {
+                        rule.Title = currentProperty.getTextContent();
+                    }
+                    case "text":
+                    {
+                        rule.Text = currentProperty.getTextContent();
+                    }
+                }
+            }
+            rules.add(rule);
+        }
+        return rules;
     }
 }
