@@ -9,6 +9,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ public class RandomizeRacesActivity extends AppCompatActivity {
 
     private SessionData sessionData = DataHolder.getInstance().getData();
     private RaceHelper raceHelper = new RaceHelper();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +71,10 @@ public class RandomizeRacesActivity extends AppCompatActivity {
                     View inflatedRaceLayout = inflater.inflate(R.layout.randomize_race_race_view, null, false);
                     TextView raceNameTextView = inflatedRaceLayout.findViewById(R.id.raceName);
                     raceNameTextView.setText(race.Name);
+                    ImageView imageView = inflatedRaceLayout.findViewById(R.id.imageView);
+                    if(imageView != null) {
+                        imageView.setImageLevel(race.RaceIconId);
+                    }
                     playersContainer.addView(inflatedRaceLayout);
                     CheckBox checkBox = inflatedRaceLayout.findViewById(R.id.selectRaceCheckBox);
                     checkBox.setContentDescription(currentPlayer.Id.toString());
@@ -84,6 +90,7 @@ public class RandomizeRacesActivity extends AppCompatActivity {
                             }
                         }
                     });
+
                 }
             }
         }

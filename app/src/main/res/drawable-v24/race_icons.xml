@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<level-list xmlns:android=
+    "http://schemas.android.com/apk/res/android">
+<item android:drawable="@drawable/sardakk_norr"
+    android:maxLevel="0" />
+<item android:drawable="@drawable/the_arborec"
+    android:maxLevel="1" />
+<item android:drawable="@drawable/the_barony_of_letnev"
+    android:maxLevel="2" />
+<item android:drawable="@drawable/the_clan_of_saar"
+    android:maxLevel="3" />
+<item android:drawable="@drawable/the_embers_of_muaat"
+    android:maxLevel="4" />
+<item android:drawable="@drawable/the_emirates_of_hacan"
+    android:maxLevel="5" />
+<item android:drawable="@drawable/the_federation_of_sol"
+    android:maxLevel="6" />
+<item android:drawable="@drawable/the_ghosts_of_creuss"
+    android:maxLevel="7" />
+<item android:drawable="@drawable/the_lizix_mindnet"
+    android:maxLevel="8" />
+<item android:drawable="@drawable/the_mentak_coalition"
+    android:maxLevel="9" />
+<item android:drawable="@drawable/the_naalu_collective"
+    android:maxLevel="10" />
+<item android:drawable="@drawable/the_nekro_virus"
+    android:maxLevel="11" />
+<item android:drawable="@drawable/the_universities_of_jol_nar"
+    android:maxLevel="12" />
+<item android:drawable="@drawable/the_winnu"
+    android:maxLevel="13" />
+<item android:drawable="@drawable/the_xxcha_kingdom"
+    android:maxLevel="14" />
+<item android:drawable="@drawable/the_yin_brotherhood"
+    android:maxLevel="15" />
+<item android:drawable="@drawable/the_yssaril_tribes"
+    android:maxLevel="16" />
+</level-list>
