@@ -25,5 +25,8 @@
         <activity
             android:name=".RulesActivity"
             android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".JHexed"
+            android:parentActivityName=".MainActivity" />
     </application>
 </manifest>

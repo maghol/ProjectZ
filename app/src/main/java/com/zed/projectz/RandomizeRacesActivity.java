@@ -79,7 +79,7 @@ public class RandomizeRacesActivity extends AppCompatActivity {
                     CheckBox checkBox = inflatedRaceLayout.findViewById(R.id.selectRaceCheckBox);
                     checkBox.setContentDescription(currentPlayer.Id.toString());
                     checkBox.setTag(race.Id);
-                    if (currentPlayer.Race != null && race.Id == currentPlayer.Race.Id) {
+                    if (currentPlayer.RaceOptions.size() == 1 || currentPlayer.Race != null && race.Id == currentPlayer.Race.Id) {
                         checkBox.setChecked(true);
                     }
                     checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

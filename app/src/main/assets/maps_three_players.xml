@@ -5,47 +5,58 @@
 		<id>3_1</id>
 		<tiles>
 			<tile>
-				<position>10</position>
+				<x-coordinate>3</x-coordinate>
+				<y-coordinate>2</y-coordinate>
 				<type>MecatolRex</type>
 			</tile>
 			<tile>
-				<position>1</position>
+				<x-coordinate>3</x-coordinate>
+				<y-coordinate>5</y-coordinate>
 				<type>StartingPosition</type>
 			</tile>
 			<tile>
-				<position>25</position>
+				<x-coordinate>0</x-coordinate>
+				<y-coordinate>1</y-coordinate>
 				<type>StartingPosition</type>
 			</tile>
 			<tile>
-				<position>28</position>
+				<x-coordinate>6</x-coordinate>
+				<y-coordinate>1</y-coordinate>
 				<type>StartingPosition</type>
 			</tile>
 			<tile>
-				<position>6</position>
+				<x-coordinate>3</x-coordinate>
+				<y-coordinate>3</y-coordinate>
 				<type>Obstacle</type>
 			</tile>
 			<tile>
-				<position>14</position>
+				<x-coordinate>2</x-coordinate>
+				<y-coordinate>2</y-coordinate>
 				<type>Obstacle</type>
 			</tile>
 			<tile>
-				<position>16</position>
+				<x-coordinate>4</x-coordinate>
+				<y-coordinate>2</y-coordinate>
 				<type>Obstacle</type>
 			</tile>
             <tile>
-                <position>5</position>
+				<x-coordinate>2</x-coordinate>
+				<y-coordinate>4</y-coordinate>
                 <type>Red</type>
             </tile>
             <tile>
-                <position>17</position>
+				<x-coordinate>5</x-coordinate>
+				<y-coordinate>2</y-coordinate>
                 <type>Red</type>
             </tile>
             <tile>
-                <position>20</position>
+				<x-coordinate>2</x-coordinate>
+				<y-coordinate>1</y-coordinate>
                 <type>Red</type>
             </tile>
             <tile>
-                <position>27</position>
+				<x-coordinate>5</x-coordinate>
+				<y-coordinate>0</y-coordinate>
                 <type>Red</type>
             </tile>
 		</tiles>

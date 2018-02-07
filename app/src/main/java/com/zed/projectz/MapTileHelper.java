@@ -1,74 +1,104 @@
 package com.zed.projectz;
 
+import android.content.Context;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class MapTileHelper {
-    private List<MapTile> obstacleMapTiles = new ArrayList<>(Arrays.asList(
-            new MapTile(TileType.Obstacle, "../res/drawable/btn_plus.xml", 0),
-            new MapTile(TileType.Obstacle, "../res/drawable/btn_plus.xml", 0),
-            new MapTile(TileType.Obstacle, "../res/drawable/btn_plus.xml", 0),
-            new MapTile(TileType.Obstacle, "../res/drawable/btn_plus.xml", 0),
-            new MapTile(TileType.Obstacle, "../res/drawable/btn_plus.xml", 0)
-    ));
+    private Context Ctx;
 
-    private List<MapTile> redMapTiles = new ArrayList<>(Arrays.asList(
-            new MapTile(TileType.Red, "../res/drawable/btn_minus.xml", 0),
-            new MapTile(TileType.Red, "../res/drawable/btn_minus.xml", 0),
-            new MapTile(TileType.Red, "../res/drawable/btn_minus.xml", 0),
-            new MapTile(TileType.Red, "../res/drawable/btn_minus.xml", 0),
-            new MapTile(TileType.Red, "../res/drawable/btn_minus.xml", 0),
-            new MapTile(TileType.Red, "../res/drawable/btn_minus.xml", 0),
-            new MapTile(TileType.Red, "../res/drawable/btn_minus.xml", 0)
+    private List<MapTile> obstacleMapTiles = new ArrayList<>();
+
+    private List<MapTile> redMapTiles = new ArrayList<>();
+
+    private List<MapTile> redWormholeMapTiles = new ArrayList<>();
+
+    private List<MapTile> blueMapTiles = new ArrayList<>();
+
+    private List<MapTile> blueWormholeMapTiles = new ArrayList<>();
+
+    private List<MapTile> startingMapTiles = new ArrayList<>();
+
+    private List<MapTile> mecatolRexTiles = new ArrayList<>();
+
+    MapTileHelper(Context ctx) throws IOException {
+        Ctx = ctx;
+        initializeTileLists();
+    }
+
+    private void initializeTileLists() {
+        try {
+            obstacleMapTiles = new ArrayList<>(Arrays.asList(
+                    new MapTile(TileType.Obstacle, "../assets/Obstacle.jpg", 0, Ctx),
+                    new MapTile(TileType.Obstacle, "../assets/Obstacle.jpg", 0, Ctx),
+                    new MapTile(TileType.Obstacle, "../assets/Obstacle.jpg", 0, Ctx),
+                    new MapTile(TileType.Obstacle, "../assets/Obstacle.jpg", 0, Ctx),
+                    new MapTile(TileType.Obstacle, "../assets/Obstacle.jpg", 0, Ctx)
             ));
-
-    private List<MapTile> blueMapTiles = new ArrayList<>(Arrays.asList(
-            new MapTile(TileType.Blue, "../res/drawable/btn_check.xml", 0),
-            new MapTile(TileType.Blue, "../res/drawable/btn_check.xml", 0),
-            new MapTile(TileType.Blue, "../res/drawable/btn_check.xml", 0),
-            new MapTile(TileType.Blue, "../res/drawable/btn_check.xml", 0),
-            new MapTile(TileType.Blue, "../res/drawable/btn_check.xml", 0),
-            new MapTile(TileType.Blue, "../res/drawable/btn_check.xml", 0),
-            new MapTile(TileType.Blue, "../res/drawable/btn_check.xml", 0),
-            new MapTile(TileType.Blue, "../res/drawable/btn_check.xml", 0),
-            new MapTile(TileType.Blue, "../res/drawable/btn_check.xml", 0),
-            new MapTile(TileType.Blue, "../res/drawable/btn_check.xml", 0),
-            new MapTile(TileType.Blue, "../res/drawable/btn_check.xml", 0),
-            new MapTile(TileType.Blue, "../res/drawable/btn_check.xml", 0),
-            new MapTile(TileType.Blue, "../res/drawable/btn_check.xml", 0),
-            new MapTile(TileType.Blue, "../res/drawable/btn_check.xml", 0),
-            new MapTile(TileType.Blue, "../res/drawable/btn_check.xml", 0),
-            new MapTile(TileType.Blue, "../res/drawable/btn_check.xml", 0),
-            new MapTile(TileType.Blue, "../res/drawable/btn_check.xml", 0),
-            new MapTile(TileType.Blue, "../res/drawable/btn_check.xml", 0),
-            new MapTile(TileType.Blue, "../res/drawable/btn_check.xml", 0),
-            new MapTile(TileType.Blue, "../res/drawable/btn_check.xml", 0)
+            redMapTiles = new ArrayList<>(Arrays.asList(
+                    new MapTile(TileType.Red, "../assets/OpenSpace.PNG", 0, Ctx),
+                    new MapTile(TileType.Red, "../assets/OpenSpace.PNG", 0, Ctx),
+                    new MapTile(TileType.Red, "../assets/OpenSpace.PNG", 0, Ctx),
+                    new MapTile(TileType.Red, "../assets/OpenSpace.PNG", 0, Ctx),
+                    new MapTile(TileType.Red, "../assets/OpenSpace.PNG", 0, Ctx)
             ));
-
-    private List<MapTile> startingMapTiles = new ArrayList<>(Arrays.asList(
-            new MapTile(TileType.StartingPosition, "../res/drawable/btn_circle.xml", 0),
-            new MapTile(TileType.StartingPosition, "../res/drawable/btn_circle.xml", 1),
-            new MapTile(TileType.StartingPosition, "../res/drawable/btn_circle.xml", 2),
-            new MapTile(TileType.StartingPosition, "../res/drawable/btn_circle.xml", 3),
-            new MapTile(TileType.StartingPosition, "../res/drawable/btn_circle.xml", 4),
-            new MapTile(TileType.StartingPosition, "../res/drawable/btn_circle.xml", 5),
-            new MapTile(TileType.StartingPosition, "../res/drawable/btn_circle.xml", 6),
-            new MapTile(TileType.StartingPosition, "../res/drawable/btn_circle.xml", 7),
-            new MapTile(TileType.StartingPosition, "../res/drawable/btn_circle.xml", 8),
-            new MapTile(TileType.StartingPosition, "../res/drawable/btn_circle.xml", 9),
-            new MapTile(TileType.StartingPosition, "../res/drawable/btn_circle.xml", 10),
-            new MapTile(TileType.StartingPosition, "../res/drawable/btn_circle.xml", 11),
-            new MapTile(TileType.StartingPosition, "../res/drawable/btn_circle.xml", 12),
-            new MapTile(TileType.StartingPosition, "../res/drawable/btn_circle.xml", 13),
-            new MapTile(TileType.StartingPosition, "../res/drawable/btn_circle.xml", 14),
-            new MapTile(TileType.StartingPosition, "../res/drawable/btn_circle.xml", 15),
-            new MapTile(TileType.StartingPosition, "../res/drawable/btn_circle.xml", 16)
+            redWormholeMapTiles = new ArrayList<>(Arrays.asList(
+                    new MapTile(TileType.Red, "../assets/A-Wormhole.PNG", 0, WormholeType.Alpha, Ctx),
+                    new MapTile(TileType.Red, "../assets/B-Wormhole.png", 0, WormholeType.Beta, Ctx)
             ));
-
-    private List<MapTile> mecatolRexTiles = new ArrayList<>(Arrays.asList(
-            new MapTile(TileType.MecatolRex, "../res/drawable/btn_star.xml", 0)
-    ));
+            blueMapTiles = new ArrayList<>(Arrays.asList(
+                    new MapTile(TileType.Blue, "../assets/Blue.jpg", 0, Ctx),
+                    new MapTile(TileType.Blue, "../assets/Blue.jpg", 0, Ctx),
+                    new MapTile(TileType.Blue, "../assets/Blue.jpg", 0, Ctx),
+                    new MapTile(TileType.Blue, "../assets/Blue.jpg", 0, Ctx),
+                    new MapTile(TileType.Blue, "../assets/Blue.jpg", 0, Ctx),
+                    new MapTile(TileType.Blue, "../assets/Blue.jpg", 0, Ctx),
+                    new MapTile(TileType.Blue, "../assets/Blue.jpg", 0, Ctx),
+                    new MapTile(TileType.Blue, "../assets/Blue.jpg", 0, Ctx),
+                    new MapTile(TileType.Blue, "../assets/Blue.jpg", 0, Ctx),
+                    new MapTile(TileType.Blue, "../assets/Blue.jpg", 0, Ctx),
+                    new MapTile(TileType.Blue, "../assets/Blue.jpg", 0, Ctx),
+                    new MapTile(TileType.Blue, "../assets/Blue.jpg", 0, Ctx),
+                    new MapTile(TileType.Blue, "../assets/Blue.jpg", 0, Ctx),
+                    new MapTile(TileType.Blue, "../assets/Blue.jpg", 0, Ctx),
+                    new MapTile(TileType.Blue, "../assets/Blue.jpg", 0, Ctx),
+                    new MapTile(TileType.Blue, "../assets/Blue.jpg", 0, Ctx),
+                    new MapTile(TileType.Blue, "../assets/Blue.jpg", 0, Ctx),
+                    new MapTile(TileType.Blue, "../assets/Blue.jpg", 0, Ctx)
+            ));
+            blueWormholeMapTiles = new ArrayList<>(Arrays.asList(
+                    new MapTile(TileType.Blue, "../assets/BlueAlphaWormhole.jpg", 0, WormholeType.Alpha, Ctx),
+                    new MapTile(TileType.Blue, "../assets/BlueBetaWormhole.jpg", 0, WormholeType.Beta, Ctx)
+            ));
+            startingMapTiles = new ArrayList<>(Arrays.asList(
+                    new MapTile(TileType.StartingPosition, "../assets/StartingPosition.jpg", 0, Ctx),
+                    new MapTile(TileType.StartingPosition, "../assets/StartingPosition.jpg", 1, Ctx),
+                    new MapTile(TileType.StartingPosition, "../assets/StartingPosition.jpg", 2, Ctx),
+                    new MapTile(TileType.StartingPosition, "../assets/StartingPosition.jpg", 3, Ctx),
+                    new MapTile(TileType.StartingPosition, "../assets/StartingPosition.jpg", 4, Ctx),
+                    new MapTile(TileType.StartingPosition, "../assets/StartingPosition.jpg", 5, Ctx),
+                    new MapTile(TileType.StartingPosition, "../assets/StartingPosition.jpg", 6, Ctx),
+                    new MapTile(TileType.StartingPosition, "../assets/StartingPosition.jpg", 7, Ctx),
+                    new MapTile(TileType.StartingPosition, "../assets/StartingPosition.jpg", 8, Ctx),
+                    new MapTile(TileType.StartingPosition, "../assets/StartingPosition.jpg", 9, Ctx),
+                    new MapTile(TileType.StartingPosition, "../assets/StartingPosition.jpg", 10, Ctx),
+                    new MapTile(TileType.StartingPosition, "../assets/StartingPosition.jpg", 11, Ctx),
+                    new MapTile(TileType.StartingPosition, "../assets/StartingPosition.jpg", 12, Ctx),
+                    new MapTile(TileType.StartingPosition, "../assets/StartingPosition.jpg", 13, Ctx),
+                    new MapTile(TileType.StartingPosition, "../assets/StartingPosition.jpg", 14, Ctx),
+                    new MapTile(TileType.StartingPosition, "../assets/StartingPosition.jpg", 15, Ctx),
+                    new MapTile(TileType.StartingPosition, "../assets/StartingPosition.jpg", 16, Ctx)
+            ));
+            mecatolRexTiles = new ArrayList<>(Arrays.asList(
+                    new MapTile(TileType.MecatolRex, "../assets/MecatolRex.PNG", 0, Ctx)
+            ));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public List<MapTile> listMapTilesOfGivenTileType(TileType tileType) {
         switch (tileType) {
@@ -94,6 +124,22 @@ public class MapTileHelper {
                 allMapTiles.addAll(mecatolRexTiles);
                 allMapTiles.addAll(obstacleMapTiles);
                 return allMapTiles;
+            }
+        }
+    }
+
+    public List<MapTile> listWormholeMapTilesOfGivenTileType(TileType tileType) {
+        switch (tileType) {
+            case Red: {
+                return redWormholeMapTiles;
+            }
+            case Blue: {
+                return blueWormholeMapTiles;
+            }
+            default: {
+                List<MapTile> allWormholeMapTiles = blueWormholeMapTiles;
+                allWormholeMapTiles.addAll(redWormholeMapTiles);
+                return allWormholeMapTiles;
             }
         }
     }

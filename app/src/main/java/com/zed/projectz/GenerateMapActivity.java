@@ -2,32 +2,41 @@ package com.zed.projectz;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 public class GenerateMapActivity extends AppCompatActivity {
 
-    private MapHelper mapHelper = new MapHelper();
+    private MapHelper mapHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generate_map);
+        mapHelper = new MapHelper();
         initialize();
     }
 
     private void initialize() {
         SessionData sessionData = DataHolder.getInstance().getData();
-        if (sessionData.Map == null) {
-            displayMap(mapHelper.generateMap(getAssets()));
+        if (sessionData.Map == null || !sessionData.Map.Selected) {
+            mapHelper.generateMap(getAssets(), getApplicationContext());
+            displayMap();
         }
     }
 
     public void generateNewMap(View view) {
-        displayMap(mapHelper.generateMap(getAssets()));
+        mapHelper.generateMap(getAssets(), getApplicationContext());
+        displayMap();
     }
 
-    private void displayMap(Map map) {
-        // TODO: Display the map somehow.
-
+    private void displayMap() {
+        ViewGroup mapContainer = this.findViewById(R.id.mapConstraintLayout);
+        mapContainer.removeAllViews();
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View inflatedMainLayout = inflater.inflate(R.layout.main, null, false);
+        inflatedMainLayout.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        mapContainer.addView(inflatedMainLayout);
     }
 }

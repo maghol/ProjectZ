@@ -6,6 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.UUID;
+
 public class MainActivity extends AppCompatActivity {
 
     private SessionData sessionData = DataHolder.getInstance().getData();
@@ -25,8 +29,10 @@ public class MainActivity extends AppCompatActivity {
     private void initialize() {
         if (sessionData.Players == null || sessionData.Players.size() < 3) {
             this.findViewById(R.id.randomizeRacesButton).setClickable(false);
+            this.findViewById(R.id.mapButton).setClickable(false);
         } else {
             this.findViewById(R.id.randomizeRacesButton).setClickable(true);
+            this.findViewById(R.id.mapButton).setClickable(true);
         }
     }
 
