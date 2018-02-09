@@ -8,13 +8,4 @@ public class Coordinate {
         Xcoordinate = xCoordinate;
         Ycoordinate = yCoordinate;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || o.getClass() == Coordinate.class.getClass()) {
-            return false;
-        }
-        Coordinate inCoordinate = (Coordinate) o;
-        return Xcoordinate == inCoordinate.Xcoordinate && Ycoordinate == inCoordinate.Ycoordinate;
-    }
 }

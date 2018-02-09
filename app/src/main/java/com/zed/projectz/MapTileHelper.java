@@ -24,6 +24,10 @@ public class MapTileHelper {
 
     private List<MapTile> mecatolRexTiles = new ArrayList<>();
 
+    public List<Coordinate> allTileCoordinatesForSmallMap = new ArrayList<>();
+
+    public List<Coordinate> allTileCoordinatesForLargeMap = new ArrayList<>();
+
     MapTileHelper(Context ctx) throws IOException {
         Ctx = ctx;
         initializeTileLists();
@@ -95,6 +99,14 @@ public class MapTileHelper {
             mecatolRexTiles = new ArrayList<>(Arrays.asList(
                     new MapTile(TileType.MecatolRex, "../assets/MecatolRex.PNG", 0, Ctx)
             ));
+            for (int xIndex = 0; xIndex < 7; xIndex++) {
+                for (int yIndex = 0; yIndex < 7; yIndex++) {
+                    if (yIndex < 6) {
+                        allTileCoordinatesForSmallMap.add(new Coordinate(xIndex, yIndex));
+                    }
+                    allTileCoordinatesForLargeMap.add(new Coordinate(xIndex, yIndex));
+                }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

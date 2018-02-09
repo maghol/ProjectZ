@@ -17,6 +17,7 @@
         android:hint="Player 1"
         android:inputType="textPersonName"
         android:singleLine="true"
+        android:text="Test 1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,6 +33,7 @@
         android:hint="Player 2"
         android:inputType="textPersonName"
         android:singleLine="true"
+        android:text="Test 2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/playerOneTextBox" />
@@ -47,6 +49,7 @@
         android:hint="Player 3"
         android:inputType="textPersonName"
         android:singleLine="true"
+        android:text="Test 3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/playerTwoTextBox" />
