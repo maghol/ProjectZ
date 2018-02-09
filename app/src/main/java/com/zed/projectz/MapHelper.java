@@ -27,17 +27,12 @@ public class MapHelper {
     private List<MapTile> startingPositionMapTiles;
     private MapTile mecatolRexMapTile;
     private List<Race> playersStartingRaces;
+    private List<MapTile> schemeMapTiles;
     private String blankTileImageSource = "../assets/Solid_Black.png";
-    private int numberOfBlueTilesAddedToMap = 0;
-    private int numberOfRedTilesAddedToMap = 0;
-    private int totalNumberOfBlueTilesInMap = 0;
-    private int totalNumberOfRedTilesInMap = 0;
-    private int totalNumberOfTilesForSmallMap = 28;
-    private int totalNumberOfTilesForLargeMap = 37;
-    int blueAlphaWormholeIndex;
-    int blueBetaWormholeIndex;
-    int redAlphaWormholeIndex;
-    int redBetaWormholeIndex;
+    Coordinate blueAlphaWormholeCoordinate;
+    Coordinate blueBetaWormholeCoordinate;
+    Coordinate redAlphaWormholeCoordinate;
+    Coordinate redBetaWormholeCoordinate;
     private List<Coordinate> blankTilesForSmallMap = new ArrayList<>(Arrays.asList(
             new Coordinate(0, 0),
             new Coordinate(0, 3),
@@ -127,7 +122,7 @@ public class MapHelper {
                     break;
                 }
                 case "tiles": {
-                    List<MapTile> schemeMapTiles = getSchemeTiles(currentMapProperty, ctx);
+                    schemeMapTiles = getSchemeTiles(currentMapProperty, ctx);
                     map.MapTiles = randomizeMapTiles(schemeMapTiles, ctx);
                     break;
                 }
@@ -162,9 +157,6 @@ public class MapHelper {
                     }
                     case "type": {
                         mapTile.TypeOfTile = convertStringToTileType(tileProperty.getTextContent());
-                        if (mapTile.TypeOfTile == TileType.Red) {
-                            totalNumberOfRedTilesInMap++;
-                        }
                         break;
                     }
                 }
@@ -173,9 +165,6 @@ public class MapHelper {
                 mapTiles.add(mapTile);
             }
         }
-        totalNumberOfBlueTilesInMap = sessionData.Players.size() == 3
-                ? totalNumberOfTilesForSmallMap - mapTiles.size()
-                : totalNumberOfTilesForLargeMap - mapTiles.size();
         return mapTiles;
     }
 
@@ -211,7 +200,8 @@ public class MapHelper {
                     if (schemeMapTile.coordinate.Xcoordinate == xIndex && schemeMapTile.coordinate.Ycoordinate == yIndex) {
                         tileType = schemeMapTile.TypeOfTile;
                         try {
-                            mapTiles.add(new MapTile(tileType, randomizeMapTile(tileType, new Coordinate(xIndex, yIndex), ctx).ImgSource, 0, schemeMapTile.coordinate, WormholeType.None, ctx));
+                            MapTile randomMapTile = randomizeMapTile(tileType, new Coordinate(xIndex, yIndex), ctx);
+                            mapTiles.add(new MapTile(tileType, randomMapTile.ImgSource, 0, schemeMapTile.coordinate, WormholeType.None, ctx));
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -228,115 +218,244 @@ public class MapHelper {
                 }
             }
         }
+        List<MapTile> tmp = new ArrayList<>();
+        for (MapTile mapTile : mapTiles) {
+            if (mapTile.WormholeType != WormholeType.None) {
+                tmp.add(mapTile);
+            }
+        }
         return mapTiles;
     }
 
     private MapTile randomizeMapTile(TileType typeOfTile, Coordinate coordinate, Context ctx) {
-        Random random = new Random();
         switch (typeOfTile) {
             case MecatolRex: {
                 return mecatolRexMapTile;
             }
             case Blue: {
-                if (numberOfPlayers == 3) {
-                    for (Coordinate blankCoordinate : blankTilesForSmallMap) {
-                        if (blankCoordinate.equals(coordinate)) {
-                            try {
-                                return new MapTile(TileType.None, blankTileImageSource, -1, ctx);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                } else {
-                    for (Coordinate blankCoordinate : blankTilesForBigMap) {
-                        if (blankCoordinate.equals(coordinate)) {
-                            try {
-                                return new MapTile(TileType.None, blankTileImageSource, -1, ctx);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                }
-                if (numberOfBlueTilesAddedToMap == blueAlphaWormholeIndex) {
-                    for(MapTile mapTile : blueWormholeMapTiles) {
-                        if (mapTile.WormholeType == WormholeType.Alpha) {
-                            numberOfBlueTilesAddedToMap++;
-                            mapTile.coordinate = coordinate;
-                            return mapTile;
-                        }
-                    }
-                } else if (numberOfBlueTilesAddedToMap == blueBetaWormholeIndex) {
-                    for(MapTile mapTile : blueWormholeMapTiles) {
-                        if (mapTile.WormholeType == WormholeType.Beta) {
-                            numberOfBlueTilesAddedToMap++;
-                            mapTile.coordinate = coordinate;
-                            return mapTile;
-                        }
-                    }
-                } else {
-                    int randomNumber = random.nextInt(blueMapTiles.size());
-                    MapTile mapTile = blueMapTiles.get(randomNumber);
-                    mapTile.coordinate = coordinate;
-                    blueMapTiles.remove(randomNumber);
-                    numberOfBlueTilesAddedToMap++;
-                    return mapTile;
-                }
+                return randomizeBlueTile(coordinate, ctx);
             }
             case Red: {
-                if (numberOfRedTilesAddedToMap == redAlphaWormholeIndex) {
-                    for(MapTile mapTile : redWormholeMapTiles) {
-                        if (mapTile.WormholeType == WormholeType.Alpha) {
-                            numberOfRedTilesAddedToMap++;
-                            return mapTile;
-                        }
+                return randomizeRedTile();
+            }
+            case Obstacle: {
+                return randomizeObstacleTile();
+            }
+            case StartingPosition: {
+                return randomizeStartingPositionTile();
+            }
+        }
+        return null;
+    }
+
+    private MapTile randomizeBlueTile(Coordinate coordinate, Context ctx) {
+        if (numberOfPlayers == 3) {
+            for (Coordinate blankCoordinate : blankTilesForSmallMap) {
+                if (blankCoordinate.Xcoordinate == coordinate.Xcoordinate
+                        && blankCoordinate.Ycoordinate == coordinate.Ycoordinate) {
+                    try {
+                        return new MapTile(TileType.None, blankTileImageSource, -1, coordinate, WormholeType.None, ctx);
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                } else if (numberOfRedTilesAddedToMap == redBetaWormholeIndex) {
-                    for(MapTile mapTile : redWormholeMapTiles) {
-                        if (mapTile.WormholeType == WormholeType.Beta) {
-                            numberOfRedTilesAddedToMap++;
-                            return mapTile;
-                        }
+                }
+            }
+        } else {
+            for (Coordinate blankCoordinate : blankTilesForBigMap) {
+                if (blankCoordinate.Xcoordinate == coordinate.Xcoordinate
+                        && blankCoordinate.Ycoordinate == coordinate.Ycoordinate) {
+                    try {
+                        return new MapTile(TileType.None, blankTileImageSource, -1, coordinate, WormholeType.None, ctx);
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                } else {
-                    int randomNumber = random.nextInt(redMapTiles.size());
-                    MapTile mapTile = redMapTiles.get(randomNumber);
-                    redMapTiles.remove(randomNumber);
-                    numberOfRedTilesAddedToMap++;
+                }
+            }
+        }
+        Random random = new Random();
+        int randomNumber = random.nextInt(blueMapTiles.size());
+        MapTile mapTile = blueMapTiles.get(randomNumber);
+        mapTile.coordinate = coordinate;
+        if (coordinate.Xcoordinate == blueAlphaWormholeCoordinate.Xcoordinate
+                && coordinate.Ycoordinate == blueAlphaWormholeCoordinate.Ycoordinate
+                || coordinate.Xcoordinate == blueBetaWormholeCoordinate.Xcoordinate
+                && coordinate.Ycoordinate == blueBetaWormholeCoordinate.Ycoordinate) {
+            int wormholeRandomNumber = random.nextInt(blueWormholeMapTiles.size());
+            mapTile = blueWormholeMapTiles.get(wormholeRandomNumber);
+            for(MapTile wormholeMapTile : blueWormholeMapTiles) {
+                if (wormholeMapTile.WormholeType == mapTile.WormholeType) {
+                    mapTile.coordinate = coordinate;
+                    blueWormholeMapTiles.remove(wormholeRandomNumber);
                     return mapTile;
                 }
             }
-            case Obstacle: {
-                int randomNumber = random.nextInt(obstacleMapTiles.size());
-                MapTile mapTile = obstacleMapTiles.get(randomNumber);
-                obstacleMapTiles.remove(randomNumber);
-                return mapTile;
-            }
-            case StartingPosition: {
-                int randomNumber = random.nextInt(playersStartingRaces.size());
-                int raceId = playersStartingRaces.get(randomNumber).Id;
-                playersStartingRaces.remove(randomNumber);
-                for (int i = 0; i < startingPositionMapTiles.size(); i++) {
-                    MapTile startingPositionMapTile = startingPositionMapTiles.get(i);
-                    if (startingPositionMapTile.RaceId == raceId) {
-                        startingPositionMapTiles.remove(i);
-                        // TODO: check schemeTile StartingResource value.
-                        // TODO: Also somehow add a +2/+4 resource icon to the img in a five player game.
-                        return startingPositionMapTile;
-                    }
+        } else if (coordinate.Xcoordinate == redAlphaWormholeCoordinate.Xcoordinate
+                && coordinate.Ycoordinate == redAlphaWormholeCoordinate.Ycoordinate
+                || coordinate.Xcoordinate == redBetaWormholeCoordinate.Xcoordinate
+                && coordinate.Ycoordinate == redBetaWormholeCoordinate.Ycoordinate) {
+            int wormholeRandomNumber = random.nextInt(redWormholeMapTiles.size());
+            mapTile = redWormholeMapTiles.get(wormholeRandomNumber);
+            for(MapTile wormholeMapTile : redWormholeMapTiles) {
+                if (wormholeMapTile.WormholeType == mapTile.WormholeType) {
+                    mapTile.coordinate = coordinate;
+                    redWormholeMapTiles.remove(wormholeRandomNumber);
+                    return mapTile;
                 }
+            }
+        } else {
+            blueMapTiles.remove(randomNumber);
+            return mapTile;
+        }
+        return null;
+    }
+
+    private MapTile randomizeRedTile() {
+        Random random = new Random();
+        int randomNumber = random.nextInt(redMapTiles.size());
+        MapTile mapTile = redMapTiles.get(randomNumber);
+        redMapTiles.remove(randomNumber);
+        return mapTile;
+    }
+
+    private MapTile randomizeObstacleTile() {
+        Random random = new Random();
+        int randomNumber = random.nextInt(obstacleMapTiles.size());
+        MapTile mapTile = obstacleMapTiles.get(randomNumber);
+        obstacleMapTiles.remove(randomNumber);
+        return mapTile;
+    }
+
+    private MapTile randomizeStartingPositionTile() {
+        Random random = new Random();
+        int randomNumber = random.nextInt(playersStartingRaces.size());
+        int raceId = playersStartingRaces.get(randomNumber).Id;
+        playersStartingRaces.remove(randomNumber);
+        for (int i = 0; i < startingPositionMapTiles.size(); i++) {
+            MapTile startingPositionMapTile = startingPositionMapTiles.get(i);
+            if (startingPositionMapTile.RaceId == raceId) {
+                startingPositionMapTiles.remove(i);
+                // TODO: Check schemeTile StartingResource value.
+                // TODO: Also somehow add a +2/+4 resource icon to the img in a five player game.
+                return startingPositionMapTile;
             }
         }
         return null;
     }
 
     private void calculateWormholePositions() {
-        // TODO: Fix rule of "next to each other".
+        List<Coordinate> blueMapTilesCoordinates;
+        if (numberOfPlayers == 3) {
+            blueMapTilesCoordinates = mapTileHelper.allTileCoordinatesForSmallMap;
+            for (Coordinate blankTileCoordinate : blankTilesForSmallMap) {
+                for (int coordinateIndex = 0; coordinateIndex < blueMapTilesCoordinates.size(); coordinateIndex++) {
+                    Coordinate coordinate = blueMapTilesCoordinates.get(coordinateIndex);
+                    if (coordinate.Xcoordinate == blankTileCoordinate.Xcoordinate
+                            && coordinate.Ycoordinate == blankTileCoordinate.Ycoordinate) {
+                        blueMapTilesCoordinates.remove(coordinateIndex);
+                        break;
+                    }
+                }
+            }
+        } else {
+            blueMapTilesCoordinates = mapTileHelper.allTileCoordinatesForLargeMap;
+            for (Coordinate blankTileCoordinate : blankTilesForBigMap) {
+                for (int coordinateIndex = 0; coordinateIndex < blueMapTilesCoordinates.size(); coordinateIndex++) {
+                    Coordinate coordinate = blueMapTilesCoordinates.get(coordinateIndex);
+                    if (coordinate.Xcoordinate == blankTileCoordinate.Xcoordinate
+                            && coordinate.Ycoordinate == blankTileCoordinate.Ycoordinate) {
+                        blueMapTilesCoordinates.remove(coordinateIndex);
+                        break;
+                    }
+                }
+            }
+        }
+        List<Coordinate> schemeMapTilesCoordinates = new ArrayList<>();
+        for (MapTile schemeMapTile : schemeMapTiles) {
+            schemeMapTilesCoordinates.add(schemeMapTile.coordinate);
+        }
+        for (MapTile schemeMapTile : schemeMapTiles) {
+            for (int coordinateIndex = 0; coordinateIndex < blueMapTilesCoordinates.size(); coordinateIndex++) {
+                Coordinate coordinate = blueMapTilesCoordinates.get(coordinateIndex);
+                if (coordinate.Xcoordinate == schemeMapTile.coordinate.Xcoordinate
+                        && coordinate.Ycoordinate == schemeMapTile.coordinate.Ycoordinate) {
+                    blueMapTilesCoordinates.remove(coordinateIndex);
+                    break;
+                }
+            }
+        }
         Random random = new Random();
-        blueAlphaWormholeIndex = random.nextInt(totalNumberOfBlueTilesInMap);
-        blueBetaWormholeIndex = random.nextInt(totalNumberOfBlueTilesInMap);
-        redAlphaWormholeIndex = random.nextInt(totalNumberOfRedTilesInMap);
-        redBetaWormholeIndex = random.nextInt(totalNumberOfRedTilesInMap);
+        int blueAlphaRandom = random.nextInt(blueMapTilesCoordinates.size());
+        blueAlphaWormholeCoordinate = blueMapTilesCoordinates.get(blueAlphaRandom);
+        blueMapTilesCoordinates.remove(blueAlphaRandom);
+        int blueBetaRandom = random.nextInt(blueMapTilesCoordinates.size());
+        blueBetaWormholeCoordinate = blueMapTilesCoordinates.get(blueBetaRandom);
+        blueMapTilesCoordinates.remove(blueBetaRandom);
+        while (true) {
+            int redAlphaRandom = random.nextInt(blueMapTilesCoordinates.size());
+            redAlphaWormholeCoordinate = blueMapTilesCoordinates.get(redAlphaRandom);
+            if (checkWormholeCoordinate(blueAlphaWormholeCoordinate, redAlphaWormholeCoordinate)) {
+                blueMapTilesCoordinates.remove(redAlphaRandom);
+                break;
+            }
+        }
+        while (true) {
+            int redBetaRandom = random.nextInt(blueMapTilesCoordinates.size());
+            redBetaWormholeCoordinate = blueMapTilesCoordinates.get(redBetaRandom);
+            if (checkWormholeCoordinate(blueBetaWormholeCoordinate, redBetaWormholeCoordinate)) {
+                blueMapTilesCoordinates.remove(redBetaRandom);
+                break;
+            }
+        }
+    }
+
+    private boolean checkWormholeCoordinate(Coordinate exitingCoordinate, Coordinate newCoordinate) {
+        int alphaX = exitingCoordinate.Xcoordinate;
+        int alphaY = exitingCoordinate.Ycoordinate;
+        int betaX = newCoordinate.Xcoordinate;
+        int betaY = newCoordinate.Ycoordinate;
+        // Top coordinate
+        if (alphaX == betaX && alphaY == betaY - 1) {
+            return false;
+        }
+        // Bottom coordinate
+        if (alphaX == betaX && alphaY == betaY + 1) {
+            return false;
+        }
+        if (betaX % 2 == 0) {
+            // Top-left coordinate
+            if (alphaX == betaX - 1 && alphaY == betaY - 1) {
+                return false;
+            }
+            // Bottom-left coordinate
+            if (alphaX == betaX - 1 && alphaY == betaY) {
+                return false;
+            }
+            // Top-right coordinate
+            if (alphaX == betaX + 1 && alphaY == betaY - 1) {
+                return false;
+            }
+            // Bottom-right coordinate
+            if (alphaX == betaX + 1 && alphaY == betaY) {
+                return false;
+            }
+        } else {
+            // Top-left coordinate
+            if (alphaX == betaX - 1 && alphaY == betaY) {
+                return false;
+            }
+            // Bottom-left coordinate
+            if (alphaX == betaX - 1 && alphaY == betaY + 1) {
+                return false;
+            }
+            // Top-right coordinate
+            if (alphaX == betaX + 1 && alphaY == betaY) {
+                return false;
+            }
+            // Bottom-right coordinate
+            if (alphaX == betaX + 1 && alphaY == betaY + 1) {
+                return false;
+            }
+        }
+        return true;
     }
 }
