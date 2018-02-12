@@ -11,6 +11,13 @@ public class Player {
         RaceOptions = new ArrayList<>();
     }
 
+    Player (UUID id, String name, Race race, List<Race> raceOptions){
+        Id = id;
+        Name = name;
+        Race = race;
+        RaceOptions = raceOptions;
+    }
+
     public UUID Id;
 
     public String Name;

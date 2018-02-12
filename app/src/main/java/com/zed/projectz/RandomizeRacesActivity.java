@@ -21,7 +21,6 @@ public class RandomizeRacesActivity extends AppCompatActivity {
     private SessionData sessionData = DataHolder.getInstance().getData();
     private RaceHelper raceHelper = new RaceHelper();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +29,23 @@ public class RandomizeRacesActivity extends AppCompatActivity {
     }
 
     private void initialize() {
+        boolean atleastOnePlayerDoesNotHaveRace = false;
+        boolean atleastOnePlayerHasRace = false;
+        for (Player player : sessionData.Players) {
+            if (player.RaceOptions == null || player.RaceOptions.size() > 0) {
+                atleastOnePlayerDoesNotHaveRace = true;
+            } else {
+                atleastOnePlayerHasRace = true;
+            }
+        }
+        if (atleastOnePlayerDoesNotHaveRace == atleastOnePlayerHasRace) {
+            for (int i = 0; i < sessionData.Players.size(); i++) {
+                Player sessionPlayer = sessionData.Players.get(i);
+                sessionPlayer.Race = null;
+                sessionPlayer.RaceOptions.clear();
+                sessionData.Players.set(i, sessionPlayer);
+            }
+        }
         createPlayersView(sessionData.Players);
     }
 

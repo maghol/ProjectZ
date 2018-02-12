@@ -11,6 +11,8 @@ import java.util.UUID;
 
 public class AddPlayersActivity extends AppCompatActivity {
 
+    private SessionData sessionData = DataHolder.getInstance().getData();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,7 +21,6 @@ public class AddPlayersActivity extends AppCompatActivity {
     }
 
     private void bindInitialValues(){
-        SessionData sessionData = DataHolder.getInstance().getData();
         int numberOfPlayers = sessionData.Players.size();
         if (numberOfPlayers < 1){
             return;
@@ -64,35 +65,65 @@ public class AddPlayersActivity extends AppCompatActivity {
     }
 
     public void savePlayers(View view){
-        SessionData sessionData = DataHolder.getInstance().getData();
-        List<Player> players = new ArrayList<>();
         View rootView = view.getRootView();
         String playerOne = ((EditText) rootView.findViewById(R.id.playerOneTextBox)).getText().toString();
-        if (!playerOne.isEmpty()){
-            players.add(new Player(UUID.randomUUID(), playerOne));
-        }
         String playerTwo = ((EditText) rootView.findViewById(R.id.playerTwoTextBox)).getText().toString();
-        if (!playerTwo.isEmpty()){
-            players.add(new Player(UUID.randomUUID(), playerTwo));
-        }
         String playerThree = ((EditText) rootView.findViewById(R.id.playerThreeTextBox)).getText().toString();
-        if (!playerThree.isEmpty()){
-            players.add(new Player(UUID.randomUUID(), playerThree));
-        }
         String playerFour = ((EditText) rootView.findViewById(R.id.playerFourTextBox)).getText().toString();
-        if (!playerFour.isEmpty()){
-            players.add(new Player(UUID.randomUUID(), playerFour));
-        }
         String playerFive = ((EditText) rootView.findViewById(R.id.playerFiveTextBox)).getText().toString();
-        if (!playerFive.isEmpty()){
-            players.add(new Player(UUID.randomUUID(), playerFive));
-        }
         String playerSix = ((EditText) rootView.findViewById(R.id.playerSixTextBox)).getText().toString();
-        if (!playerSix.isEmpty()){
-            players.add(new Player(UUID.randomUUID(), playerSix));
+        if (sessionData.Players == null || sessionData.Players.size() == 0) {
+            if (!playerOne.isEmpty()){
+                sessionData.Players.add(new Player(UUID.randomUUID(), playerOne));
+            }
+            if (!playerTwo.isEmpty()){
+                sessionData.Players.add(new Player(UUID.randomUUID(), playerTwo));
+            }
+            if (!playerThree.isEmpty()){
+                sessionData.Players.add(new Player(UUID.randomUUID(), playerThree));
+            }
+            if (!playerFour.isEmpty()){
+                sessionData.Players.add(new Player(UUID.randomUUID(), playerFour));
+            }
+            if (!playerFive.isEmpty()){
+                sessionData.Players.add(new Player(UUID.randomUUID(), playerFive));
+            }
+            if (!playerSix.isEmpty()){
+                sessionData.Players.add(new Player(UUID.randomUUID(), playerSix));
+            }
+        } else {
+            List<String> playerNames = new ArrayList<>();
+            if (!playerOne.isEmpty()){
+                playerNames.add(playerOne);
+            }
+            if (!playerTwo.isEmpty()){
+                playerNames.add(playerTwo);
+            }
+            if (!playerThree.isEmpty()){
+                playerNames.add(playerThree);
+            }
+            if (!playerFour.isEmpty()){
+                playerNames.add(playerFour);
+            }
+            if (!playerFive.isEmpty()){
+                playerNames.add(playerFive);
+            }
+            if (!playerSix.isEmpty()){
+                playerNames.add(playerSix);
+            }
+            for (int i = 0; i < playerNames.size(); i++) {
+                if (sessionData.Players.size() < i + 1) {
+                    sessionData.Players.add(new Player(UUID.randomUUID(), playerNames.get(i)));
+                } else {
+                    Player sessionPlayer = sessionData.Players.get(i);
+                    if (sessionPlayer == null) {
+                        sessionData.Players.set(i, new Player(UUID.randomUUID(), playerNames.get(i)));
+                    } else {
+                        sessionData.Players.set(i, new Player(sessionPlayer.Id, playerNames.get(i), sessionPlayer.Race, sessionPlayer.RaceOptions));
+                    }
+                }
+            }
         }
-        sessionData.Players = players;
-        DataHolder.getInstance().setData(sessionData);
         finish();
     }
 }

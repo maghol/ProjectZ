@@ -13,6 +13,7 @@ public class DataHolder {
         sessionData = new SessionData();
         sessionData.Players = new ArrayList<>();
         sessionData.Map = new Map();
+
     }
 
     public SessionData getData() { return sessionData; }

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 public class GenerateMapActivity extends AppCompatActivity {
 
     private MapHelper mapHelper;
+    private SessionData sessionData = DataHolder.getInstance().getData();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +20,7 @@ public class GenerateMapActivity extends AppCompatActivity {
     }
 
     private void initialize() {
-        SessionData sessionData = DataHolder.getInstance().getData();
+        sessionData = DataHolder.getInstance().getData();
         if (sessionData.Map == null || !sessionData.Map.Selected) {
             mapHelper.generateMap(getAssets(), getApplicationContext());
             displayMap();
@@ -29,6 +30,11 @@ public class GenerateMapActivity extends AppCompatActivity {
     public void generateNewMap(View view) {
         mapHelper.generateMap(getAssets(), getApplicationContext());
         displayMap();
+    }
+
+    public void selectMap(View view) {
+        sessionData.Map.Selected = true;
+        finish();
     }
 
     private void displayMap() {

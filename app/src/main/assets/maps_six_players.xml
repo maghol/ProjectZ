@@ -5,71 +5,78 @@
 		<id>6_1</id>
 		<tiles>
 			<tile>
-				<position>13</position>
+				<x-coordinate>3</x-coordinate>
+				<y-coordinate>3</y-coordinate>
 				<type>MecatolRex</type>
 			</tile>
 			<tile>
-				<position>1</position>
+				<x-coordinate>3</x-coordinate>
+				<y-coordinate>0</y-coordinate>
 				<type>StartingPosition</type>
 			</tile>
 			<tile>
-				<position>10</position>
+				<x-coordinate>6</x-coordinate>
+				<y-coordinate>2</y-coordinate>
 				<type>StartingPosition</type>
 			</tile>
 			<tile>
-				<position>16</position>
+				<x-coordinate>6</x-coordinate>
+				<y-coordinate>5</y-coordinate>
 				<type>StartingPosition</type>
 			</tile>
 			<tile>
-				<position>31</position>
+				<x-coordinate>0</x-coordinate>
+				<y-coordinate>2</y-coordinate>
 				<type>StartingPosition</type>
 			</tile>
 			<tile>
-				<position>34</position>
+				<x-coordinate>0</x-coordinate>
+				<y-coordinate>5</y-coordinate>
 				<type>StartingPosition</type>
 			</tile>
 			<tile>
-				<position>37</position>
+				<x-coordinate>3</x-coordinate>
+				<y-coordinate>6</y-coordinate>
 				<type>StartingPosition</type>
 			</tile>
 			<tile>
-				<position>7</position>
+				<x-coordinate>2</x-coordinate>
+				<y-coordinate>1</y-coordinate>
 				<type>Obstacle</type>
 			</tile>
 			<tile>
-				<position>19</position>
+				<x-coordinate>2</x-coordinate>
+				<y-coordinate>3</y-coordinate>
 				<type>Obstacle</type>
 			</tile>
 			<tile>
-				<position>21</position>
+				<x-coordinate>4</x-coordinate>
+				<y-coordinate>3</y-coordinate>
 				<type>Obstacle</type>
 			</tile>
 			<tile>
-				<position>33</position>
+				<x-coordinate>3</x-coordinate>
+				<y-coordinate>4</y-coordinate>
 				<type>Obstacle</type>
 			</tile>
 			<tile>
-				<position>6</position>
+				<x-coordinate>0</x-coordinate>
+				<y-coordinate>4</y-coordinate>
 				<type>Red</type>
 			</tile>
 			<tile>
-				<position>17</position>
+				<x-coordinate>5</x-coordinate>
+				<y-coordinate>1</y-coordinate>
 				<type>Red</type>
 			</tile>
 			<tile>
-				<position>22</position>
+				<x-coordinate>2</x-coordinate>
+				<y-coordinate>5</y-coordinate>
 				<type>Red</type>
 			</tile>
 			<tile>
-				<position>23</position>
-				<type>Red</type>
-			</tile>
-			<tile>
-				<position>26</position>
-				<type>Red</type>
-			</tile>
-			<tile>
-				<position>36</position>
+				<x-coordinate>6</x-coordinate>
+				<y-coordinate>4</y-coordinate>
 				<type>Red</type>
 			</tile>
 		</tiles>
