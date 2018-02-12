@@ -2,6 +2,7 @@ package com.zed.projectz;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.os.Debug;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -273,15 +274,12 @@ public class MapHelper {
             }
         }
         Random random = new Random();
-        int randomNumber = random.nextInt(blueMapTiles.size());
-        MapTile mapTile = blueMapTiles.get(randomNumber);
-        mapTile.coordinate = coordinate;
         if (coordinate.Xcoordinate == blueAlphaWormholeCoordinate.Xcoordinate
                 && coordinate.Ycoordinate == blueAlphaWormholeCoordinate.Ycoordinate
                 || coordinate.Xcoordinate == blueBetaWormholeCoordinate.Xcoordinate
                 && coordinate.Ycoordinate == blueBetaWormholeCoordinate.Ycoordinate) {
             int wormholeRandomNumber = random.nextInt(blueWormholeMapTiles.size());
-            mapTile = blueWormholeMapTiles.get(wormholeRandomNumber);
+            MapTile mapTile = blueWormholeMapTiles.get(wormholeRandomNumber);
             for(MapTile wormholeMapTile : blueWormholeMapTiles) {
                 if (wormholeMapTile.WormholeType == mapTile.WormholeType) {
                     mapTile.coordinate = coordinate;
@@ -294,7 +292,7 @@ public class MapHelper {
                 || coordinate.Xcoordinate == redBetaWormholeCoordinate.Xcoordinate
                 && coordinate.Ycoordinate == redBetaWormholeCoordinate.Ycoordinate) {
             int wormholeRandomNumber = random.nextInt(redWormholeMapTiles.size());
-            mapTile = redWormholeMapTiles.get(wormholeRandomNumber);
+            MapTile mapTile = redWormholeMapTiles.get(wormholeRandomNumber);
             for(MapTile wormholeMapTile : redWormholeMapTiles) {
                 if (wormholeMapTile.WormholeType == mapTile.WormholeType) {
                     mapTile.coordinate = coordinate;
@@ -303,6 +301,9 @@ public class MapHelper {
                 }
             }
         } else {
+            int randomNumber = random.nextInt(blueMapTiles.size());
+            MapTile mapTile = blueMapTiles.get(randomNumber);
+            mapTile.coordinate = coordinate;
             blueMapTiles.remove(randomNumber);
             return mapTile;
         }
