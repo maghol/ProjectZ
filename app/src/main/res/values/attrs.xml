@@ -9,4 +9,7 @@
         <attr name="hexSelectedBorder" format="color"/>
         <attr name="hexLineWidth" format="float"/>
     </declare-styleable>
+    <declare-styleable name="ExpandableTextView">
+        <attr name="trimLength" format="integer"/>
+    </declare-styleable>
 </resources>

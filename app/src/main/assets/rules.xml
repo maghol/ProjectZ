@@ -2,6 +2,194 @@
 <rules>
     <rule>
         <id>0</id>
+        <title>Abilities</title>
+        <text>Cards and faction sheets each have abilities that players can resolve to trigger various game effects.</text>
+        <subrules>
+            <subrule>
+                <id>1001</id>
+                <title>1.1</title>
+                <text>Each ability describes when and how a player can resolve it.</text>
+            </subrule>
+            <subrule>
+                <id>1002</id>
+                <title>1.2</title>
+                <text>If a card has multiple abilities, each ability is presented as its own paragraph.</text>
+            </subrule>
+            <subrule>
+                <id>1003</id>
+                <title>1.3</title>
+                <text>If an ability contains the word “Action,” a player must use a component action during the action phase to resolve that ability.</text>
+            </subrule>
+            <subrule>
+                <id>1004</id>
+                <title>1.4</title>
+                <text>If an ability uses the word “cannot,” that effect is absolute.</text>
+            </subrule>
+            <subrule>
+                <id>1005</id>
+                <title>1.5</title>
+                <text>When a player resolves an ability, he must resolve the ability in its entirety. Any parts of the ability preceded by the word “may” are optional, and the player resolving the ability may choose not to resolve those parts.</text>
+            </subrule>
+            <subrule>
+                <id>1006</id>
+                <title>1.6</title>
+                <text>Abilities on components that remain in play are mandatory unless they use the word “may.”</text>
+            </subrule>
+            <subrule>
+                <id>1007</id>
+                <title>1.7</title>
+                <text>If an ability has multiple effects separated by the word “and,” a player must resolve as many of the ability’s effects as possible. However, if he cannot resolve all of its effects, he is allowed to resolve as many as he can.</text>
+            </subrule>
+            <subrule>
+                <id>1008</id>
+                <title>1.8</title>
+                <text>COSTS</text>
+            </subrule>
+            <subrule>
+                <id>1009</id>
+                <title>1.9</title>
+                <text>Some abilities have a cost that is followed by an effect. The cost of an ability is separated from the effect by the word “to” or by a semicolon. A player cannot resolve the effect of such an ability if he cannot resolve that ability’s cost.</text>
+            </subrule>
+            <subrule>
+                <id>1010</id>
+                <title>1.10</title>
+                <text>Some examples of an ability’s cost include spending resources, spending trade goods, spending command tokens, exhausting cards, and activating specific systems.</text>
+            </subrule>
+            <subrule>
+                <id>1011</id>
+                <title>1.11</title>
+                <text>TIMING</text>
+            </subrule>
+            <subrule>
+                <id>1012</id>
+                <title>1.12</title>
+                <text>If the timing of an ability uses the word “after,” the ability’s effect occurs immediately after the described timing event.
+                    • For example, if an ability is resolved “after a ship is destroyed,” the ability must be resolved as soon as the ship is destroyed and not later during that turn or round.</text>
+            </subrule>
+            <subrule>
+                <id>1013</id>
+                <title>1.13</title>
+                <text>If the timing of an ability uses the word “when,” the ability’s effect occurs at the moment of the described timing event.
+                    • Such an ability typically modifies or replaces the timing event in some way.</text>
+            </subrule>
+            <subrule>
+                <id>1014</id>
+                <title>1.14</title>
+                <text>Effects that occur “when” an event happens take priority over effects that occur “after” an event happens.</text>
+            </subrule>
+            <subrule>
+                <id>1015</id>
+                <title>1.15</title>
+                <text>If an ability uses the word “then,” a player must resolve the effect that occurs before the word “then” before resolving the effect that occurs after the word “then.”</text>
+            </subrule>
+            <subrule>
+                <id>1016</id>
+                <title>1.16</title>
+                <text>Each ability can be resolved once for each occurrence of that ability’s timing event. For example, if an ability is resolved “At the start of combat,” it can be resolved at the start of each combat.</text>
+            </subrule>
+            <subrule>
+                <id>1017</id>
+                <title>1.17</title>
+                <text>COMPONENT-SPECIFIC RULES</text>
+            </subrule>
+            <subrule>
+                <id>1018</id>
+                <title>1.18</title>
+                <text>The opening paragraph of each ability found on an action card describes when a player can resolve that card’s ability.</text>
+            </subrule>
+            <subrule>
+                <id>1019</id>
+                <title>1.19</title>
+                <text>The opening paragraph of most abilities found on promissory notes describes when a player can resolve that card’s ability.
+                    • Some promissory notes have abilities that trigger as soon as a player receives the card.</text>
+            </subrule>
+            <subrule>
+                <id>1020</id>
+                <title>1.20</title>
+                <text>Abilities on agenda cards correspond to an outcome. Players resolve these abilities during the agenda phase after players vote for a particular outcome.</text>
+            </subrule>
+            <subrule>
+                <id>1021</id>
+                <title>1.21</title>
+                <text>Each faction has faction abilities presented on its faction sheet. Each faction’s flagship has one or more unique abilities. Some abilities provide players with perpetual effects.</text>
+            </subrule>
+            <subrule>
+                <id>1022</id>
+                <title>1.22</title>
+                <text>Some units have unit abilities. These abilities are named and presented above a unit’s attributes on a player’s faction sheet or on a unit upgrade card. Each unit ability has unique rules for when a player can resolve that ability. The following abilities are unit abilities:
+                    • Anti-Fighter Barrage
+                    • Bombardment
+                    • Planetary Shield
+                    • Production
+                    • Space Cannon
+                    • Sustain Damage</text>
+            </subrule>
+            <subrule>
+                <id>1023</id>
+                <title>1.23</title>
+                <text>If a unit’s ability uses the phrase “this system” or “this planet,” the ability is referring to the system or planet that contains that unit.</text>
+            </subrule>
+        </subrules>
+        <relatedtopics>Action Cards;Promissory Notes;Strategy Card;Technology</relatedtopics>
+    </rule>
+    <rule>
+        <id>1</id>
+        <title>Action Cards</title>
+        <text>Action cards provide players with various abilities that they can resolve as described on the cards.</text>
+        <subrules>
+            <subrule>
+                <id>2001</id>
+                <title>2.1</title>
+                <text>Each player draws one action card during each status phase.</text>
+            </subrule>
+            <subrule>
+                <id>2002</id>
+                <title>2.2</title>
+                <text>Players can draw action cards by resolving the primary and secondary abilities of the “Politics” strategy card.</text>
+            </subrule>
+            <subrule>
+                <id>2003</id>
+                <title>2.3</title>
+                <text>When a player draws an action card, he takes the top card from the action card deck and adds it to his hand of action cards.</text>
+            </subrule>
+            <subrule>
+                <id>2004</id>
+                <title>2.4</title>
+                <text>Each player can have a maximum of seven action cards in his hand at any time. If a player ever has more than seven action cards, he must choose which seven cards he wishes to keep and discard the rest.
+                    • A game effect can increase or decrease the number of cards a player can have in his hand.</text>
+            </subrule>
+            <subrule>
+                <id>2005</id>
+                <title>2.5</title>
+                <text>A player’s action cards remain hidden from other players until they are played.</text>
+            </subrule>
+            <subrule>
+                <id>2006</id>
+                <title>2.6</title>
+                <text>The first paragraph of each action card is presented in bold text and describes the timing of when that card’s ability can be resolved.
+                    • If an action card contains the word “Action,” a player must use a component action during the action phase to resolve the ability. A player cannot resolve a component action if he cannot completely resolve its ability.
+                    • Multiple action cards with the same name cannot be played during a single timing window to affect the same units or game mechanic.</text>
+            </subrule>
+            <subrule>
+                <id>2007</id>
+                <title>2.7</title>
+                <text>To play an action card, a player reads and resolves the card’s ability text. Then, he discards the card, placing it in the action discard pile.</text>
+            </subrule>
+            <subrule>
+                <id>2008</id>
+                <title>2.8</title>
+                <text>If an action card is canceled, that card has no effect and is discarded.</text>
+            </subrule>
+            <subrule>
+                <id>2009</id>
+                <title>2.9</title>
+                <text>If there are multiple action cards that players wish to resolve at the same time during the strategy or agenda phases, players take turns resolving action cards starting with the speaker and proceeding clockwise. This process repeats until each player has resolved all the action cards that he wishes to resolve during that window.2.10 If there are multiple action cards that players wish to resolve at the same time during the action phase, each player takes a turn resolving one action card in initiative order, beginning with the active player. This process repeats until each player has resolved all the action cards that he wishes to resolve during that window.</text>
+            </subrule>
+        </subrules>
+        <relatedtopics>Abilities;Component Action;Politics;Status Phase</relatedtopics>
+    </rule>
+    <!-- <rule>
+        <id>0</id>
         <title>Jol-Nar</title>
         <text>They like to build a wall of PDS's, it makes them feel safe.</text>
     </rule>
@@ -20,4 +208,18 @@
         <title>Strategy action</title>
         <text>Use your strategy card!</text>
     </rule>
+    <rule>
+        <id></id>
+        <title></title>
+        <text></text>
+        <subrules>
+            <subrule>
+                <id></id>
+                <title></title>
+                <text></text>
+            </subrule>
+        </subrules>
+        <relatedtopics></relatedtopics>
+    </rule>
+    -->
 </rules>

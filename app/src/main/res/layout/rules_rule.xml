@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subRulesContainer" />
+
+    <com.zed.projectz.ExpandableTextView
         android:id="@+id/ruleHeaderText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -14,27 +25,38 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:textAppearance="@android:style/TextAppearance.Material.Title"
+        app:fontFamily="sans-serif-medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <com.zed.projectz.ExpandableTextView
         android:id="@+id/ruleDescriptionText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:tag="descriptiontext"
+        app:fontFamily="sans-serif"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ruleHeaderText" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/ruleDescriptionText"/>
+    <ScrollView
+        android:id="@+id/subRulesContainer"
+        android:layout_width="379dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:tag="subContainer"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/ruleDescriptionText"
+        tools:layout_editor_absoluteX="16dp">
+
+        <LinearLayout
+            android:id="@+id/subRulesLinearLineout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>

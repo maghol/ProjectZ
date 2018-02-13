@@ -14,4 +14,18 @@
         android:background="#000000"
         app:hexBorder="#FFFFFFFF"
         app:hexSelectedBorder="#ffb1a0ff" />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+        <com.zed.projectz.ExpandableTextView
+            android:id="@+id/expandableView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
 </FrameLayout>
+
+

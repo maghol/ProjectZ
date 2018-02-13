@@ -40,11 +40,19 @@ public class RulesActivity extends AppCompatActivity {
         List<Rule> rules = listRules();
         List<Rule> titleMatches = new ArrayList<>();
         List<Rule> textMatches = new ArrayList<>();
+        List<Rule> subRuleMatches = new ArrayList<>();
         for (Rule rule : rules) {
             if (rule.Title.toLowerCase().contains(searchText.toLowerCase())) {
                 titleMatches.add(rule);
             } else if (rule.Text.toLowerCase().contains(searchText.toLowerCase())) {
                 textMatches.add(rule);
+            }
+            else if (rule.SubRules != null && rule.SubRules.size() > 0){
+                for(SubRule subRule : rule.SubRules){
+                    if(subRule.Text.toLowerCase().contains(searchText.toLowerCase())){
+                        subRuleMatches.add(rule);
+                    }
+                }
             }
         }
         for (Rule textRuleMatch : textMatches) {
@@ -54,20 +62,69 @@ public class RulesActivity extends AppCompatActivity {
                 }
             }
         }
+
+        /*for (Rule subRuleMatch : subRuleMatches){
+            for (Rule titleRuleMatch : titleMatches){
+                if(subRuleMatch.Id == titleRuleMatch.Id){
+                    titleMatches.remove(titleRuleMatch);
+                }
+            }
+            for(Rule textRuleMatch: textMatches){
+                if(subRuleMatch.Id == textRuleMatch.Id){
+                    textMatches.remove(textRuleMatch);
+                }
+            }
+        }*/
         LayoutInflater inflater = LayoutInflater.from(this);
         ViewGroup rulesContainer = this.findViewById(R.id.rulesLinearLayout);
         rulesContainer.removeAllViews();
         for (Rule rule : titleMatches) {
             View inflatedRulesLayout = inflater.inflate(R.layout.rules_rule, null, false);
-            ((TextView) inflatedRulesLayout.findViewById(R.id.ruleHeaderText)).setText(rule.Title);
-            ((TextView) inflatedRulesLayout.findViewById(R.id.ruleDescriptionText)).setText(rule.Text);
+            ((ExpandableTextView) inflatedRulesLayout.findViewById(R.id.ruleHeaderText)).setText(rule.Title);
+            ((ExpandableTextView) inflatedRulesLayout.findViewById(R.id.ruleDescriptionText)).setText(rule.Text);
             rulesContainer.addView(inflatedRulesLayout);
+            ViewGroup subRulesContainer = inflatedRulesLayout.findViewById(R.id.subRulesLinearLineout);
+            subRulesContainer.removeAllViews();
+            if(rule.SubRules != null && rule.SubRules.size() > 0){
+                for(SubRule subRule : rule.SubRules){
+                    View inflatedSubRuleLayout = inflater.inflate(R.layout.rules_rule_subrule, null, false);
+                    ((TextView)inflatedSubRuleLayout.findViewById(R.id.ruleSubRuleTitle)).setText(subRule.Title);
+                    ((TextView)inflatedSubRuleLayout.findViewById(R.id.ruleSubRuleText)).setText(subRule.Text);
+                    subRulesContainer.addView(inflatedSubRuleLayout);
+                }
+            }
         }
         for (Rule rule : textMatches) {
             View inflatedRulesLayout = inflater.inflate(R.layout.rules_rule, null, false);
-            ((TextView) inflatedRulesLayout.findViewById(R.id.ruleHeaderText)).setText(rule.Title);
-            ((TextView) inflatedRulesLayout.findViewById(R.id.ruleDescriptionText)).setText(rule.Text);
+            ((ExpandableTextView) inflatedRulesLayout.findViewById(R.id.ruleHeaderText)).setText(rule.Title);
+            ((ExpandableTextView) inflatedRulesLayout.findViewById(R.id.ruleDescriptionText)).setText(rule.Text);
             rulesContainer.addView(inflatedRulesLayout);
+            ViewGroup subRulesContainer = inflatedRulesLayout.findViewById(R.id.subRulesLinearLineout);
+            subRulesContainer.removeAllViews();
+            if(rule.SubRules != null && rule.SubRules.size() > 0){
+                for(SubRule subRule : rule.SubRules){
+                    View inflatedSubRuleLayout = inflater.inflate(R.layout.rules_rule_subrule, null, false);
+                    ((TextView)inflatedSubRuleLayout.findViewById(R.id.ruleSubRuleTitle)).setText(subRule.Title);
+                    ((TextView)inflatedSubRuleLayout.findViewById(R.id.ruleSubRuleText)).setText(subRule.Text);
+                    subRulesContainer.addView(inflatedSubRuleLayout);
+                }
+            }
+        }
+        for (Rule rule : subRuleMatches) {
+            View inflatedRulesLayout = inflater.inflate(R.layout.rules_rule, null, false);
+            ((ExpandableTextView) inflatedRulesLayout.findViewById(R.id.ruleHeaderText)).setText(rule.Title);
+            ((ExpandableTextView) inflatedRulesLayout.findViewById(R.id.ruleDescriptionText)).setText(rule.Text);
+            rulesContainer.addView(inflatedRulesLayout);
+            ViewGroup subRulesContainer = inflatedRulesLayout.findViewById(R.id.subRulesLinearLineout);
+            subRulesContainer.removeAllViews();
+            if(rule.SubRules != null && rule.SubRules.size() > 0){
+                for(SubRule subRule : rule.SubRules){
+                    View inflatedSubRuleLayout = inflater.inflate(R.layout.rules_rule_subrule, null, false);
+                    ((TextView)inflatedSubRuleLayout.findViewById(R.id.ruleSubRuleTitle)).setText(subRule.Title);
+                    ((TextView)inflatedSubRuleLayout.findViewById(R.id.ruleSubRuleText)).setText(subRule.Text);
+                    subRulesContainer.addView(inflatedSubRuleLayout);
+                }
+            }
         }
     }
 
@@ -80,9 +137,20 @@ public class RulesActivity extends AppCompatActivity {
         Collections.sort(rules);
         for (Rule rule : rules) {
             View inflatedRulesLayout = inflater.inflate(R.layout.rules_rule, null, false);
-            ((TextView) inflatedRulesLayout.findViewById(R.id.ruleHeaderText)).setText(rule.Title);
-            ((TextView) inflatedRulesLayout.findViewById(R.id.ruleDescriptionText)).setText(rule.Text);
+            ((ExpandableTextView) inflatedRulesLayout.findViewById(R.id.ruleHeaderText)).setText(rule.Title);
+            ((ExpandableTextView) inflatedRulesLayout.findViewById(R.id.ruleDescriptionText)).setText(rule.Text);
             ruleViews.add(inflatedRulesLayout);
+
+            if (rule.SubRules != null && rule.SubRules.size() > 0) {
+                ViewGroup subRuleContainer = inflatedRulesLayout.findViewById(R.id.subRulesLinearLineout);
+                subRuleContainer.removeAllViews();
+                for (SubRule subRule : rule.SubRules) {
+                    View inflatedSubRuleLayout = inflater.inflate(R.layout.rules_rule_subrule, null, false);
+                    ((TextView) inflatedSubRuleLayout.findViewById(R.id.ruleSubRuleTitle)).setText(subRule.Title);
+                    ((TextView) inflatedSubRuleLayout.findViewById(R.id.ruleSubRuleText)).setText(subRule.Text);
+                    subRuleContainer.addView(inflatedSubRuleLayout);
+                }
+            }
         }
         for (View ruleView : ruleViews) {
             rulesContainer.addView(ruleView);
@@ -110,6 +178,35 @@ public class RulesActivity extends AppCompatActivity {
                     case "text":
                     {
                         rule.Text = currentProperty.getTextContent();
+                    }
+                    case "subrules": {
+                        NodeList subRulesChildren = currentProperty.getChildNodes();
+                        for (int i3 = 0; i3 < subRulesChildren.getLength(); i3++) {
+                            NodeList currentChildElements = subRulesChildren.item(i3).getChildNodes();
+                            SubRule subRule = new SubRule();
+                            for(int i4 = 0; i4 < currentChildElements.getLength(); i4++) {
+                                Node currentElement = currentChildElements.item(i4);
+
+                                switch (currentElement.getNodeName()) {
+                                    case "id": {
+                                        subRule.Id = Integer.parseInt(currentElement.getTextContent());
+                                    }
+                                    case "title": {
+                                        subRule.Title = currentElement.getTextContent();
+                                    }
+                                    case "text": {
+                                        subRule.Text = currentElement.getTextContent();
+                                    }
+                                }
+                            }
+                            if(subRule.Title != null) {
+                                rule.SubRules.add(subRule);
+                            }
+                        }
+                    }
+                    case "relatedtopics":
+                    {
+                        //TODO something with the realted topics tags
                     }
                 }
             }
