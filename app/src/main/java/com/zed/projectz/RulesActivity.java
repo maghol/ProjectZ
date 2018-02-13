@@ -51,6 +51,7 @@ public class RulesActivity extends AppCompatActivity {
                 for(SubRule subRule : rule.SubRules){
                     if(subRule.Text.toLowerCase().contains(searchText.toLowerCase())){
                         subRuleMatches.add(rule);
+                        break;
                     }
                 }
             }
@@ -63,7 +64,7 @@ public class RulesActivity extends AppCompatActivity {
             }
         }
 
-        /*for (Rule subRuleMatch : subRuleMatches){
+        for (Rule subRuleMatch : subRuleMatches){
             for (Rule titleRuleMatch : titleMatches){
                 if(subRuleMatch.Id == titleRuleMatch.Id){
                     titleMatches.remove(titleRuleMatch);
@@ -74,7 +75,7 @@ public class RulesActivity extends AppCompatActivity {
                     textMatches.remove(textRuleMatch);
                 }
             }
-        }*/
+        }
         LayoutInflater inflater = LayoutInflater.from(this);
         ViewGroup rulesContainer = this.findViewById(R.id.rulesLinearLayout);
         rulesContainer.removeAllViews();
