@@ -2,7 +2,12 @@
 <rules>
     <rule>
         <id>0</id>
-        <title>Abilities</title>
+        <title>Glossary</title>
+        <text>This glossary provides players with detailed rules for Twilight Imperium: Fourth Edition, organized by topic.</text>
+    </rule>
+    <rule>
+        <id>1</id>
+        <title>1. Abilities</title>
         <text>Cards and faction sheets each have abilities that players can resolve to trigger various game effects.</text>
         <subrules>
             <subrule>
@@ -133,8 +138,8 @@
         <relatedtopics>Action Cards;Promissory Notes;Strategy Card;Technology</relatedtopics>
     </rule>
     <rule>
-        <id>1</id>
-        <title>Action Cards</title>
+        <id>2</id>
+        <title>2. Action Cards</title>
         <text>Action cards provide players with various abilities that they can resolve as described on the cards.</text>
         <subrules>
             <subrule>
@@ -188,26 +193,387 @@
         </subrules>
         <relatedtopics>Abilities;Component Action;Politics;Status Phase</relatedtopics>
     </rule>
-    <!-- <rule>
-        <id>0</id>
-        <title>Jol-Nar</title>
-        <text>They like to build a wall of PDS's, it makes them feel safe.</text>
-    </rule>
-    <rule>
-        <id>1</id>
-        <title>PDS</title>
-        <text>PDS stands for "Please don't shoot!"</text>
-    </rule>
-    <rule>
-        <id>2</id>
-        <title>Winning the game</title>
-        <text>You can't win the game, fool!</text>
-    </rule>
     <rule>
         <id>3</id>
-        <title>Strategy action</title>
-        <text>Use your strategy card!</text>
+        <title>3. Action phase</title>
+        <text>During the action phase, each player takes a turn in initiative order. During a player’s turn, he performs a single action. After each player has taken a turn, player turns begin again in initiative order. This process continues until all players have passed.</text>
+        <subrules>
+            <subrule>
+                <id>3001</id>
+                <title>3.1</title>
+                <text>During a player’s turn, he may perform one of the following three types of actions: a strategic action, a tactical action, or a component action.</text>
+            </subrule>
+            <subrule>
+                <id>3002</id>
+                <title>3.2</title>
+                <text>If a player cannot perform an action, he must pass.</text>
+            </subrule>
+            <subrule>
+                <id>3003</id>
+                <title>3.3</title>
+                <text>After a player has passed, he cannot perform additional actions during that action phase.
+                    • A player that has passed can still resolve the secondary ability of other players’ strategy cards.
+                    • It is possible for a player to perform multiple, consecutive actions during an action phase if all other players have passed during that action phase.</text>
+            </subrule>
+            <subrule>
+                <id>3004</id>
+                <title>3.4</title>
+                <text>A player cannot pass until he has performed a strategic action.
+                    • During a three-player or four-player game, a player cannot pass until he has exhausted both of his strategy cards.</text>
+            </subrule>
+            <subrule>
+                <id>3005</id>
+                <title>3.5</title>
+                <text>After all players have passed, play proceeds to the status phase.</text>
+            </subrule>
+        </subrules>
+        <relatedtopics>Component Action;Game Round;Status Phase;Strategic Action;Tactical Action</relatedtopics>
     </rule>
+    <rule>
+        <id>4</id>
+        <title>4. Active player</title>
+        <text>The active player is the player taking a turn during the action phase.</text>
+        <subrules>
+            <subrule>
+                <id>4001</id>
+                <title>4.1</title>
+                <text>During the action phase, the player who is first in initiative order is the first active player.</text>
+            </subrule>
+            <subrule>
+                <id>4002</id>
+                <title>4.2</title>
+                <text>After the active player takes a turn, the next player in initiative order becomes the active player.</text>
+            </subrule>
+            <subrule>
+                <id>4003</id>
+                <title>4.3</title>
+                <text>After the last player in initiative order takes a turn, the player who is first in initiative order becomes the active player again, and turns begin again in initiative order, ignoring any players who have already passed.</text>
+            </subrule>
+        </subrules>
+        <relatedtopics>Action Phase;Initiative Order</relatedtopics>
+    </rule>
+    <rule>
+        <id>5</id>
+        <title>5. Active system</title>
+        <text>The active system is the system that is activated during a tactical action.</text>
+        <subrules>
+            <subrule>
+                <id>5001</id>
+                <title>5.1</title>
+                <text>When a player performs a tactical action, he activates a system by placing a command token from his tactic pool on that system. That system is the active system.</text>
+            </subrule>
+            <subrule>
+                <id>5002</id>
+                <title>5.2</title>
+                <text>A player cannot activate a system that already contains one of his command tokens.</text>
+            </subrule>
+            <subrule>
+                <id>5003</id>
+                <title>5.3</title>
+                <text>A player can activate a system that contains command tokens that match other players’ factions.</text>
+            </subrule>
+            <subrule>
+                <id>5004</id>
+                <title>5.4</title>
+                <text>A system remains the active system for the duration of the tactical action during which it was activated.</text>
+            </subrule>
+        </subrules>
+        <relatedtopics>Movement;Tactical Action</relatedtopics>
+    </rule>
+    <rule>
+        <id>6</id>
+        <title>6. Adjacency</title>
+        <text>Two system tiles are adjacent to each other if any of the tiles’ edges are touching each another.</text>
+        <subrules>
+            <subrule>
+                <id>6001</id>
+                <title>6.1</title>
+                <text>A system that has a wormhole is treated as being adjacent to a system that has a matching wormhole.</text>
+            </subrule>
+            <subrule>
+                <id>6002</id>
+                <title>6.2</title>
+                <text>A unit or planet is adjacent to all system tiles that are adjacent to the system tile that contains that unit or planet.</text>
+            </subrule>
+        </subrules>
+        <relatedtopics>Movement;Neighbors;Wormholes</relatedtopics>
+    </rule>
+    <rule>
+        <id>7</id>
+        <title>7. Agenda card</title>
+        <text>Agenda cards represent galactic laws and policies. During each agenda phase, players cast votes for specific outcomes on two agenda cards.</text>
+        <subrules>
+            <subrule>
+                <id>7001</id>
+                <title>7.1</title>
+                <text>There are two types of agenda cards: laws and directives.</text>
+            </subrule>
+            <subrule>
+                <id>7002</id>
+                <title>7.2</title>
+                <text>Laws can permanently change the rules of the game.</text>
+            </subrule>
+            <subrule>
+                <id>7003</id>
+                <title>7.3</title>
+                <text>When resolving a law, if a “For” outcome received the most votes, or if the law requires an election, the law’s ability becomes a permanent part of the game. Players resolve the outcome and place the agenda card either in the common play area or in a player’s play area, as dictated by the card.</text>            </subrule>
+            <subrule>
+                <id>7004</id>
+                <title>7.4</title>
+                <text>If a law is in a player’s play area as opposed to the common play area, that player owns that law.</text>
+            </subrule>
+            <subrule>
+                <id>7005</id>
+                <title>7.5</title>
+                <text>If a law is discarded from play, that law’s ability is no longer in effect. Place that card on the top of the agenda card discard pile.</text>
+            </subrule>
+            <subrule>
+                <id>7006</id>
+                <title>7.6</title>
+                <text>If an “Against” outcome of a law received the most votes, players resolve the outcome and discard the agenda.</text>
+            </subrule>
+            <subrule>
+                <id>7007</id>
+                <title>7.7</title>
+                <text>Directives provide one-time game effects.</text>
+            </subrule>
+            <subrule>
+                <id>7008</id>
+                <title>7.8</title>
+                <text>When resolving a directive, players resolve the outcome that received the most votes and discard the agenda card.</text>
+            </subrule>
+        </subrules>
+        <relatedtopics>Agenda Phase;Attach;Victory Points</relatedtopics>
+    </rule>
+    <rule>
+        <id>8</id>
+        <title>8. Agenda phase</title>
+        <text>During the agenda phase, players can cast votes on agendas that can change the rules of the game.</text>
+        <subrules>
+            <subrule>
+                <id>8001</id>
+                <title>8.1</title>
+                <text>Players skip the agenda phase during the early portion of each game. After the custodians token is removed from Mecatol Rex, the agenda phase is added to each game round. To resolve the agenda phase, players perform the following steps:</text>
+            </subrule>
+            <subrule>
+                <id>8002</id>
+                <title>8.2</title>
+                <text>STEP 1—FIRST AGENDA: Players resolve the first agenda by following these steps in order:
+                    i. REVEAL AGENDA: The speaker draws one agenda card from the top of the agenda deck and reads it aloud to all players, including all of its possible outcomes.
+                    ii. VOTE: Each player, starting with the player to the left of the speaker and continuing clockwise, can cast votes for an outcome of the current agenda.
+                    iii.RESOLVE OUTCOME: Players tally each vote that was cast and resolve the outcome that received the most votes.</text>
+            </subrule>
+            <subrule>
+                <id>8003</id>
+                <title>8.3</title>
+                <text>STEP 2—SECOND AGENDA: Players repeat the “First Agenda” step of this phase for a second agenda.</text>
+            </subrule>
+            <subrule>
+                <id>8004</id>
+                <title>8.4</title>
+                <text>STEP 3—READY PLANETS: Each player readies each of his exhausted planets. Then, a new game round begins starting with the strategy phase.</text>
+            </subrule>
+            <subrule>
+                <id>8005</id>
+                <title>8.5</title>
+                <text>VOTING
+                    When voting during the agenda phase, a player can cast votes for a specific outcome of an agenda.</text>
+            </subrule>
+            <subrule>
+                <id>8006</id>
+                <title>8.6</title>
+                <text>To cast votes, a player exhausts any number of his planets. The player casts a number of votes for an outcome of his choice equal to the combined influence values of the planets he exhausted.
+                    • When a player exhausts a planet to cast votes, he must cast the full amount of votes provided by that planet.</text>
+            </subrule>
+            <subrule>
+                <id>8007</id>
+                <title>8.7</title>
+                <text>A player cannot cast votes for multiple outcomes of the same agenda. Each vote he casts must be for the same outcome.</text>
+            </subrule>
+            <subrule>
+                <id>8008</id>
+                <title>8.8</title>
+                <text>Some agendas have “For” and “Against” outcomes. When a player casts votes on such an agenda, he must cast his votes either “For” or “Against.”</text>
+            </subrule>
+            <subrule>
+                <id>8009</id>
+                <title>8.9</title>
+                <text>Some agendas instruct players to elect either a player or a planet. When a player casts votes for such an agenda, he must cast his vote for an eligible player or planet as described on the agenda.</text>
+            </subrule>
+            <subrule>
+                <id>8010</id>
+                <title>8.10</title>
+                <text>When electing a player, a player can cast votes for himself.
+                    • When resolving these agendas, the “elected player” is the player who had the most votes cast for him.</text>
+            </subrule>
+            <subrule>
+                <id>8011</id>
+                <title>8.11</title>
+                <text>When electing a planet, a player must cast votes for a planet that is controlled by a player.
+                    • When resolving these agendas, the “elected planet” is the planet that had the most votes cast for it.</text>
+            </subrule>
+            <subrule>
+                <id>8012</id>
+                <title>8.12</title>
+                <text>When casting votes, a player must declare aloud the outcome for which his votes are being cast.</text>
+            </subrule>
+            <subrule>
+                <id>8013</id>
+                <title>8.13</title>
+                <text>Trade goods cannot be spent to cast votes.</text>
+            </subrule>
+            <subrule>
+                <id>8014</id>
+                <title>8.14</title>
+                <text>A player may choose to abstain by not casting any votes.</text>
+            </subrule>
+            <subrule>
+                <id>8015</id>
+                <title>8.15</title>
+                <text>Some game effects allow a player to cast additional votes for an outcome. These votes cannot be cast for a different outcome than other votes cast by that player.</text>
+            </subrule>
+            <subrule>
+                <id>8016</id>
+                <title>8.16</title>
+                <text>If a player cannot vote on an agenda because of a game effect, he cannot cast votes for that agenda by exhausting planets or through any other game effect.</text>
+            </subrule>
+            <subrule>
+                <id>8017</id>
+                <title>8.17</title>
+                <text>OUTCOMES</text>
+            </subrule>
+            <subrule>
+                <id>8018</id>
+                <title>8.18</title>
+                <text>To resolve an outcome, the speaker follows the instructions on the agenda card.</text>
+            </subrule>
+            <subrule>
+                <id>8019</id>
+                <title>8.19</title>
+                <text>If there is a tie for the outcome that received the most votes, the speaker decides which of the tied outcomes to resolve.</text>
+            </subrule>
+            <subrule>
+                <id>8020</id>
+                <title>8.20</title>
+                <text>If an “Elect” or “For” outcome of a law was resolved, that card remains in play and permanently affects the game.</text>
+            </subrule>
+            <subrule>
+                <id>8021</id>
+                <title>8.21</title>
+                <text>If a directive or an “against” outcome of a law was resolved, that card is placed in the agenda discard pile.</text>
+            </subrule>
+            <subrule>
+                <id>8022</id>
+                <title>8.22</title>
+                <text>Some game effects instruct a player to predict an outcome. To predict an outcome, a player declares aloud the outcome he thinks will receive the most votes. He must make this prediction after the agenda is revealed but before any votes have been cast.
+                    • A predicted outcome must be a possible outcome of the revealed agenda.
+                    • After resolving the outcome of the agenda, resolve any abilities that were dependent upon predicting the outcome.</text>
+            </subrule>
+        </subrules>
+        <relatedtopics>Custodians Token;Game Round;Influence</relatedtopics>
+    </rule>
+    <rule>
+        <id>9</id>
+        <title>9. Anomalies</title>
+        <text>An anomaly is a system tile that has unique rules.</text>
+        <subrules>
+            <subrule>
+                <id>9001</id>
+                <title>9.1</title>
+                <text>An anomaly is identified by a red border located on the tile’s corners.</text>
+            </subrule>
+            <subrule>
+                <id>9002</id>
+                <title>9.2</title>
+                <text>There are four types of anomalies: asteroid fields, nebulae, supernovas, and gravity rifts.</text>
+            </subrule>
+            <subrule>
+                <id>9003</id>
+                <title>9.3</title>
+                <text>Each type of anomaly is identified by its art, as follows:
+                    • Asteroid Field
+                    • Nebula
+                    • Supernova
+                    • Gravity Rift</text>
+            </subrule>
+        </subrules>
+        <relatedtopics>Asteroid Field;Gravity Rift;Movement;Nebula;Supernova;System Tiles</relatedtopics>
+    </rule>
+    <rule>
+        <id>10</id>
+        <title>10. Anti-fighter barrage (unit ability)</title>
+        <text>A unit with the “Anti-Fighter Barrage” ability may be able to destroy an opponent’s fighters at the start of the first round of a space combat. During the “Anti-Fighter Barrage” step of space combat, players perform the following steps:</text>
+        <subrules>
+            <subrule>
+                <id>10001</id>
+                <title>10.1</title>
+                <text>STEP 1—Each player rolls dice for each of his units in the combat that has the “Anti-Fighter Barrage” ability; this is called an anti-fighter barrage roll. A hit is produced for each die roll that is equal to or greater than the unit’s anti-fighter barrage value.
+                    • If a unit has an “Anti-Fighter Barrage” ability, it is presented on its faction sheet and technology cards.
+                    • The “Anti-Fighter Barrage” ability is displayed as “AntiFighter Barrage X (Y).” The X is the minimum value needed for a die to produce a hit, and Y is the number of dice rolled.
+                    • Game effects that reroll, modify, or otherwise affect combat rolls do not affect anti-fighter barrage rolls
+                </text>
+            </subrule>
+            <subrule>
+                <id>10002</id>
+                <title>10.2</title>
+                <text>STEP 2:—Each player must choose and destroy one of his fighters in the active system for each hit his opponent’s antifighter barrage roll produced.
+                    • If a player has to assign more hits than he has fighters in the active system, the excess hits have no effect.
+                </text>
+            </subrule>
+        </subrules>
+        <relatedtopics>Destroyed;Space Combat</relatedtopics>
+    </rule>
+    <rule>
+        <id>11</id>
+        <title>11. Asteroid field</title>
+        <text>An asteroid field is an anomaly that affects movement.</text>
+        <subrules>
+            <subrule>
+                <id>11001</id>
+                <title>11.1</title>
+                <text>A ship cannot move through or into an asteroid field.</text>
+            </subrule>
+        </subrules>
+        <relatedtopics>Anomalies</relatedtopics>
+    </rule>
+    <rule>
+        <id>12</id>
+        <title>12. Attach</title>
+        <text>Some game effects instruct a player to attach a card to a planet card. A card that is attached to a planet card modifies that planet card in some way.</text>
+        <subrules>
+            <subrule>
+                <id>12001</id>
+                <title>12.1</title>
+                <text>To attach a card to a planet card, a player places the card with the attach effect partially underneath the planet card.</text>
+            </subrule>
+            <subrule>
+                <id>12002</id>
+                <title>12.2</title>
+                <text>If a player gains or loses control of planet that contains a card with an attach effect, the attached card stays with that planet.</text>
+            </subrule>
+        </subrules>
+        <relatedtopics>Agenda Card;Control;Planets</relatedtopics>
+    </rule>
+    <rule>
+        <id>13</id>
+        <title>13. Attacker</title>
+        <text>During combat, the active player is the attacker.</text>
+        <relatedtopics>Defender;Invasion;Space Combat</relatedtopics>
+    </rule>
+    <rule>
+        <id>14</id>
+        <title>14. Blockaded</title>
+        <text>A player’s unit with “Production” is blockaded if it is in a system that contains another player’s ships but does not contain any of his own ships.</text>
+        <subrules>
+            <subrule>
+                <id>14001</id>
+                <title>14.1</title>
+                <text>A player cannot use a blockaded unit to produce ships; he can still use a blockaded unit to produce ground forces.</text>
+            </subrule>
+        </subrules>
+        <relatedtopics>Producing Units;Ships</relatedtopics>
+    </rule>
+    <!--
     <rule>
         <id></id>
         <title></title>
